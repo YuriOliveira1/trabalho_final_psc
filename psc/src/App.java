@@ -1,5 +1,170 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Scanner scan = new Scanner(System.in);
+        int opcao = 1;
+        int opcaoTipo = 1;
+        SistemaGestaoDoacoes sgd = new SistemaGestaoDoacoes();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        while (opcao != 4) {
+            opcao = menu(scan);
+
+            if (opcao == 1) {
+                System.out.print("Quantidade do Item a ser Doado: ");
+                int quantidade = scan.nextInt();
+                System.out.print("Data da Doação: ");
+                String data = scan.nextLine();
+                Date dataFormat = sdf.parse(data);
+                System.out.print("Apelido/Nome: ");
+                String apelido = scan.nextLine();
+                System.out.print("Contato: ");
+                String contato = scan.nextLine();
+
+                Doador doador = new Doador(apelido, contato);
+                doador.cadastrarDoador(doador);
+                sgd.adicionarDoadores(doador);
+
+                Doacao doacao = new Doacao(quantidade, doador, dataFormat);
+
+                opcaoTipo = menuTiposDoacoes(scan);
+                // 1 - Maquiagem
+                // 2 - Lenço
+                // 3 - Cabelo
+                // 4 - Dinheiro
+                if (opcaoTipo == 1) {
+                    doacao.setTipo("Maquiagem");
+
+                    System.out.print("Descrição Maquiagem: ");
+                    String descricaoMaquiagem = scan.nextLine();
+
+                    Maquiagem maquiagem = new Maquiagem(quantidade, doador, dataFormat, descricaoMaquiagem);
+                    maquiagem.registraDoacao(doacao);
+                    sgd.adicionarDoacao(maquiagem);
+                } else if (opcaoTipo == 2) {
+                    doacao.setTipo("Lenço");
+
+                    System.out.print("Cor do Lenço: ");
+                    String corLenco = scan.nextLine();
+                    System.out.print("Estilo do Lenço: ");
+                    String estiloLenco = scan.nextLine();
+
+                    Lenco lenco = new Lenco(quantidade, doador, dataFormat, corLenco, estiloLenco);
+                    lenco.registraDoacao(lenco);
+                    sgd.adicionarDoacao(lenco);
+                } else if (opcaoTipo == 3) {
+                    doacao.setTipo("Cabelo");
+
+                    System.out.print("Cor do Cabelo: ");
+                    String corCabelo = scan.nextLine();
+                    System.out.print("Tamanho do Cabelo: ");
+                    String tamanhoCabelo = scan.nextLine();
+
+                    Cabelo cabelo = new Cabelo(quantidade, doador, dataFormat, corCabelo, tamanhoCabelo);
+                    cabelo.registraDoacao(cabelo);
+                    sgd.adicionarDoacao(cabelo);
+                } else if (opcaoTipo == 4) {
+                    doacao.setTipo("Dinheiro");
+
+                    System.out.print("Valor a ser doado: R$ ");
+                    float valor = scan.nextFloat();
+
+                    DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormat, doador);
+                    dinheiro.registraDoacaoDinheiro(dinheiro);
+                    sgd.adicionarDoacaoDinheiro(dinheiro);
+                }
+
+            } else if (opcao == 2) {
+                LocalDate dataAgora = LocalDate.now();
+                DateTimeFormatter Formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String dataAtual = Formatada.format(dataAgora);
+
+                System.out.print("Descrição do relatorio: ");
+                String tipoRelatorio = scan.nextLine();
+                
+                Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
+                relatorio.gerarRelatorio();
+            } else if (opcao == 3) {
+                System.out.print("Deseja buscar doações de qual tipo: ");
+                String tipo = scan.nextLine();
+
+                sgd.buscarDoacoesPorTipo(tipo);
+            } else if (opcao == 4) {
+                System.out.println("Saindo...");
+            }
+        }
+
+    }
+
+    public static int menu(Scanner scan) {
+        int opcao = 1;
+        boolean loop = false;
+
+        while (!loop) {
+            System.out.println("1 - Realizar uma Doação");
+            System.out.println("2 - Gerar Relatorio");
+            System.out.println("3 - Buscar doação por Tipo");
+            System.out.println("4 - Sair");
+
+            try {
+                opcao = scan.nextInt();
+
+                if (opcao >= 1 && opcao <= 4) {
+                    loop = true;
+                } else {
+                    System.out.println("Coloque uma Opção Valida");
+                    scan.nextInt();
+                }
+            } catch (Exception e) {
+                System.out.println("Error");
+            }
+        }
+        return opcao;
+    }
+
+    public static int menuTiposDoacoes(Scanner scan) {
+        int opcao = 1;
+        boolean loop = false;
+
+        while (!loop) {
+            System.out.println("1 - Maquiagem");
+            System.out.println("2 - Lenço");
+            System.out.println("3 - Cabelo");
+            System.out.println("4 - Dinheiro");
+
+            try {
+                opcao = scan.nextInt();
+
+                if (opcao >= 1 && opcao <= 4) {
+                    loop = true;
+                } else {
+                    System.out.println("Escolha uma opção Valida");
+                }
+            } catch (Exception e) {
+                System.out.println("Error");
+            }
+        }
+        return opcao;
+    }
+
+    public static void controladorTiposDoacoes(int opcaoTipo) {
+        // 1 - Maquiagem
+        // 2 - Lenço
+        // 3 - Cabelo
+        // 4 - Dinheiro
+        if (opcaoTipo == 1) {
+
+        } else if (opcaoTipo == 2) {
+
+        } else if (opcaoTipo == 3) {
+
+        } else if (opcaoTipo == 4) {
+
+        }
     }
 }

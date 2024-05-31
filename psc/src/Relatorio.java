@@ -1,23 +1,52 @@
-import java.util.Date;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Relatorio {
-    private Date dataRelatorio;
+    private String dataRelatorio;
     private String tipoRelatorio;
 
-    public Relatorio(Date dataRelatorio, String tipoRelatorio) {
+    public Relatorio(String dataRelatorio, String tipoRelatorio) {
         this.dataRelatorio = dataRelatorio;
         this.tipoRelatorio = tipoRelatorio;
     }
 
-    public void gerarRelatorioGeral(){
-
+    public void gerarRelatorio(){
+        System.out.println("Relatorio Gerado no Dia: " + dataRelatorio);
+        System.out.println("Contagem de Doações: " + quantidadeDoacoes());
+        System.out.println("Contagem de Doadores: " + quantidadeDoadores());
+        System.out.println("Dinheiro Arrecadado: R$ " + DoacaoDinheiro.somaTotalValores());
     }
 
-    public Date getDataRelatorio() {
+    public int quantidadeDoacoes() {
+        int contador = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(Arquivos.ARQUIVO_DOACOES))) {
+            while (reader.readLine() != null) {
+                contador++;
+            }
+        } catch (IOException e) {
+            System.out.println("Error 104");
+        }
+        return contador;
+    }
+
+    public int quantidadeDoadores(){
+        int contador = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(Arquivos.ARQUIVO_DOADORES))) {
+            while (reader.readLine() != null) {
+                contador++;
+            }
+        } catch (IOException e) {
+            System.out.println("Error 105");
+        }
+        return contador;
+    }
+
+    public String getDataRelatorio() {
         return dataRelatorio;
     }
 
-    public void setDataRelatorio(Date dataRelatorio) {
+    public void setDataRelatorio(String dataRelatorio) {
         this.dataRelatorio = dataRelatorio;
     }
 

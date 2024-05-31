@@ -11,20 +11,42 @@ public class SistemaGestaoDoacoes {
         this.listaDoadores = new ArrayList<>();
     }
 
-    public void adicionarDoacao(Doacao doacao){
+    public void adicionarDoacao(Doacao doacao) {
         listaDoacoes.add(doacao);
     }
 
-    public void adicionarDoacaoDinheiro(DoacaoDinheiro doacao){
+    public void adicionarDoacaoDinheiro(DoacaoDinheiro doacao) {
         listaDoacaoDinheiro.add(doacao);
     }
 
-    public void adicionarDoadores(Doador doador){
+    public void adicionarDoadores(Doador doador) {
         listaDoadores.add(doador);
     }
 
-    public void buscarDoacoesPorTipo(String tipo){
+    public ArrayList<Doacao> buscarDoacoesPorTipo(String tipo) {
+        ArrayList<Doacao> listaTipoEncontrado = new ArrayList<>();
+        for (Doacao doacoes : listaDoacoes){
+            if (doacoes.getTipo().equals(tipo)) {
+                listaTipoEncontrado.add(doacoes);
+            }
+        }
+        return listaTipoEncontrado;
+    }
 
+
+    public void contador() {
+        int doacoesDeDinheiro = getListaDoacaoDinheiro().size();
+        int doacoesDeDoacoes = getListaDoacoes().size();
+        int doacoesGerais = getListaDoacoes().size() + getListaDoacaoDinheiro().size();
+        int doacoesDeDoadores = getListaDoadores().size();
+
+        System.out.println("Doação Dinheiro: " + doacoesDeDinheiro
+                + "\n"
+                + "Doações:" + doacoesDeDoacoes
+                + "\n"
+                + "Doação Gerais: " + doacoesGerais
+                + "\n"
+                + "Doadores: " + doacoesDeDoadores);
     }
 
     public ArrayList<Doacao> getListaDoacoes() {

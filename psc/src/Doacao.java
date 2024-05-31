@@ -1,3 +1,4 @@
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,16 +9,18 @@ public class Doacao {
     private Date data;
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
+    public Doacao(int quantidade, Doador doador, Date data) {
+        this.quantidade = quantidade;
+        this.doador = doador;
+        this.data = data;
+    }
 
     public Doacao(String tipo, int quantidade, Doador doador, Date data) {
         this.tipo = tipo;
         this.quantidade = quantidade;
         this.doador = doador;
         this.data = data;
-    }
-
-    public void registraDoacao(){
-
     }
 
     public String getTipo() {
