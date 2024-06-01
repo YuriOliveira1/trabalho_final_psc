@@ -1,4 +1,6 @@
 package Program;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +10,6 @@ import java.util.Scanner;
 import Classes.*;
 import Controladores.*;
 
-
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
@@ -17,18 +18,27 @@ public class App {
         SistemaGestaoDoacoes sgd = new SistemaGestaoDoacoes();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        while (opcao != 3) {
+        while (opcao != 5) {
             opcao = menu(scan);
 
             if (opcao == 1) {
                 System.out.print("Quantidade do Item a ser Doado: ");
                 int quantidade = scan.nextInt();
                 scan.nextLine();
+
                 System.out.print("Data da Doação: ");
                 String data = scan.nextLine();
                 Date dataFormat = sdf.parse(data);
+
+                if (verificadorDatas(dataFormat)) {
+                    System.out.print("Coloque uma data Valída: ");
+                    data = scan.nextLine();
+                    dataFormat = sdf.parse(data);
+                }
+
                 System.out.print("Apelido/Nome: ");
                 String apelido = scan.nextLine();
+
                 System.out.print("Contato: ");
                 String contato = scan.nextLine();
 
@@ -89,7 +99,7 @@ public class App {
                 System.out.print("Nome do Escritor: ");
                 scan.nextLine();
                 String nomeEscrito = scan.nextLine();
-                
+
                 System.out.print("Escreva um breve Texto de Apoio: ");
                 String texto = scan.nextLine();
 
@@ -162,5 +172,18 @@ public class App {
             }
         }
         return opcao;
+    }
+
+    public static boolean verificadorDatas(Date data) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dataAtual = sdf.parse(sdf.format(new Date()));
+            if (data.before(dataAtual)) {
+                return true;
+            }
+        } catch (ParseException e) {
+            System.out.println("Erro ao Analisar a Data");
+        }
+        return false;
     }
 }
