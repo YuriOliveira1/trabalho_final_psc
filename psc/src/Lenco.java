@@ -16,7 +16,7 @@ public class Lenco extends Doacao {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Arquivos.ARQUIVO_DOACOES, true))) {
             String dataFormatada = sdf.format(getData());
             String apelidoDoador = doacao.getDoador().toString();
-            pw.println(getTipo() + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getCorLenco() + ", " + getEstiloLenco());
+            pw.println("Lenço" + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getCorLenco() + ", " + getEstiloLenco());
             
         } catch (Exception e) {
             System.out.println("Error 404");

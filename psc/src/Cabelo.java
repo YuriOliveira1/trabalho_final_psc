@@ -17,7 +17,7 @@ public class Cabelo extends Doacao {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Arquivos.ARQUIVO_DOACOES, true))) {
             String dataFormatada = sdf.format(getData());
             String apelidoDoador = doacao.getDoador().toString();
-            pw.println(getTipo() + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getCorCabelo() + ", " + getTamanhoCabelo());
+            pw.println("Cabelo" + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getCorCabelo() + ", " + getTamanhoCabelo());
         } catch (Exception e) {
             System.out.println("Error 404");
         }

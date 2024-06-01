@@ -20,7 +20,7 @@ public class DoacaoDinheiro {
     public void registraDoacaoDinheiro(DoacaoDinheiro dinheiro) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Arquivos.ARQUIVO_DOACOES, true))) {
             String dataFormatada = sdf.format(getData());
-            pw.println(valor + ", " + apelidoDoador + ", " + dataFormatada);
+            pw.println("Dinheiro" + valor + ", " + apelidoDoador + ", " + dataFormatada);
         } catch (Exception e) {
             System.out.println("Error 404");
         }

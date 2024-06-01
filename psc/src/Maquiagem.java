@@ -14,7 +14,7 @@ public class Maquiagem extends Doacao {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Arquivos.ARQUIVO_DOACOES, true))) {
             String dataFormatada = sdf.format(getData());
             String apelidoDoador = doacao.getDoador().toString();
-            pw.println(getTipo() + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getDescricaoMaquiagem());
+            pw.println("Maquiagem" + ", " + getQuantidade() + ", " + apelidoDoador + ", " + dataFormatada + ", " + getDescricaoMaquiagem());
         } catch (Exception e) {
             System.out.println("Error 404");
         }

@@ -10,17 +10,12 @@ public class Doacao {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
+
     public Doacao(int quantidade, Doador doador, Date data) {
         this.quantidade = quantidade;
         this.doador = doador;
         this.data = data;
-    }
-
-    public Doacao(String tipo, int quantidade, Doador doador, Date data) {
-        this.tipo = tipo;
-        this.quantidade = quantidade;
-        this.doador = doador;
-        this.data = data;
+        this.tipo = ""; 
     }
 
     public String getTipo() {

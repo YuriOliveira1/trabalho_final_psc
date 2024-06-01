@@ -23,16 +23,18 @@ public class SistemaGestaoDoacoes {
         listaDoadores.add(doador);
     }
 
-    public ArrayList<Doacao> buscarDoacoesPorTipo(String tipo) {
+    /*
+    Função desabilitada, posso utiliza-la depois
+         public ArrayList<Doacao> buscarDoacoesPorTipo(String tipo) {
         ArrayList<Doacao> listaTipoEncontrado = new ArrayList<>();
-        for (Doacao doacoes : listaDoacoes){
+        for (Doacao doacoes : listaDoacoes) {
             if (doacoes.getTipo().equals(tipo)) {
                 listaTipoEncontrado.add(doacoes);
             }
         }
         return listaTipoEncontrado;
     }
-
+     */
 
     public void contador() {
         int doacoesDeDinheiro = getListaDoacaoDinheiro().size();
