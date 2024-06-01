@@ -35,10 +35,6 @@ public class App {
 
                 opcaoTipo = menuTiposDoacoes(scan);
                 scan.nextLine();
-                // 1 - Maquiagem
-                // 2 - Lenço
-                // 3 - Cabelo
-                // 4 - Dinheiro
                 if (opcaoTipo == 1) {
 
                     System.out.print("Descrição Maquiagem: ");
@@ -91,6 +87,7 @@ public class App {
 
                 System.out.print("Descrição do relatorio: ");
                 String tipoRelatorio = scan.nextLine();
+                scan.next();
 
                 Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
                 relatorio.gerarRelatorio();
