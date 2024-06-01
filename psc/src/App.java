@@ -71,7 +71,7 @@ public class App {
 
                 System.out.print("Valor a ser doado: R$ ");
                 float valor = scan.nextFloat();
-                scan.nextLine(); 
+                scan.nextLine();
 
                 System.out.print("Data da Doação: ");
                 String data = scan.nextLine();
@@ -81,6 +81,16 @@ public class App {
                 dinheiro.registraDoacaoDinheiro(dinheiro);
                 sgd.adicionarDoacaoDinheiro(dinheiro);
             } else if (opcao == 3) {
+                System.out.print("Nome do Escritor: ");
+                scan.nextLine();
+                String nomeEscrito = scan.nextLine();
+                
+                System.out.print("Escreva um breve Texto de Apoio: ");
+                String texto = scan.nextLine();
+
+                CartaDeApoio cartaDeApoio = new CartaDeApoio(nomeEscrito, texto);
+                cartaDeApoio.registarCarta(nomeEscrito, texto);
+            } else if (opcao == 4) {
                 LocalDate dataAgora = LocalDate.now();
                 DateTimeFormatter Formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 String dataAtual = Formatada.format(dataAgora);
@@ -91,7 +101,7 @@ public class App {
 
                 Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
                 relatorio.gerarRelatorio();
-            } else if (opcao == 4) {
+            } else if (opcao == 5) {
                 System.out.println("Saindo...");
             }
         }
@@ -104,13 +114,14 @@ public class App {
         while (!loop) {
             System.out.println("1 - Realizar uma Doação de Objetos");
             System.out.println("2 - Realizar uma Doação de Dinheiro");
-            System.out.println("3 - Gerar Relatorio");
-            System.out.println("4 - Sair");
+            System.out.println("3 - Escrever uma Carta de Apoio");
+            System.out.println("4 - Gerar Relatorio");
+            System.out.println("5 - Sair");
 
             try {
                 opcao = scan.nextInt();
 
-                if (opcao >= 1 && opcao <= 4) {
+                if (opcao >= 1 && opcao <= 5) {
                     loop = true;
                 } else {
                     System.out.println("Coloque uma Opção Valida");
