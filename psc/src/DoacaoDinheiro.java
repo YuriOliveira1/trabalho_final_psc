@@ -27,11 +27,6 @@ public class DoacaoDinheiro {
         }
     }
 
-    
-    // Adicionar método que soma todos os valores contados
-    public void converterParaItem() {
-
-    }
 
     public Date getData() {
         return data;
