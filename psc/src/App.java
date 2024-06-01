@@ -32,7 +32,7 @@ public class App {
                 sgd.adicionarDoadores(doador);
 
                 Doacao doacao = new Doacao(quantidade, doador, dataFormat);
-                
+
                 opcaoTipo = menuTiposDoacoes(scan);
                 scan.nextLine();
                 // 1 - Maquiagem
@@ -91,11 +91,6 @@ public class App {
                 Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
                 relatorio.gerarRelatorio();
             } else if (opcao == 3) {
-                System.out.print("Deseja buscar doações de qual tipo: ");
-                String tipo = scan.nextLine();
-
-                sgd.buscarDoacoesPorTipo(tipo);
-            } else if (opcao == 4) {
                 System.out.println("Saindo...");
             }
         }
@@ -109,13 +104,12 @@ public class App {
         while (!loop) {
             System.out.println("1 - Realizar uma Doação");
             System.out.println("2 - Gerar Relatorio");
-            System.out.println("3 - Buscar doação por Tipo");
-            System.out.println("4 - Sair");
+            System.out.println("3 - Sair");
 
             try {
                 opcao = scan.nextInt();
 
-                if (opcao >= 1 && opcao <= 4) {
+                if (opcao >= 1 && opcao <= 3) {
                     loop = true;
                 } else {
                     System.out.println("Coloque uma Opção Valida");
