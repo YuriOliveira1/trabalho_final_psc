@@ -6,30 +6,28 @@ import java.util.Date;
 public class DoacaoDinheiro {
     private static float valor;
     private Date data;
-    private Doador doador;
+    private String nomeConta;
+    private static float resultado = 0;
  
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    String apelidoDoador = doador.getApelido().toString();
 
-    public DoacaoDinheiro(float valor, Date data, Doador doador) {
+    public DoacaoDinheiro(float valor, Date data, String nomeConta) {
         DoacaoDinheiro.valor = valor;
         this.data = data;
-        this.doador = doador;
+        this.nomeConta = nomeConta;
+        resultado += valor;
     }
     
     public void registraDoacaoDinheiro(DoacaoDinheiro dinheiro) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(Arquivos.ARQUIVO_DOACOES, true))) {
             String dataFormatada = sdf.format(getData());
-            pw.println("Dinheiro" + valor + ", " + apelidoDoador + ", " + dataFormatada);
+            pw.println("Dinheiro" + ", "+ valor + ", " + nomeConta + ", " + dataFormatada);
         } catch (Exception e) {
             System.out.println("Error 404");
         }
     }
 
-    public static float somaTotalValores(){
-        float resultado =+ valor;
-        return resultado;
-    }
+    
     // Adicionar método que soma todos os valores contados
     public void converterParaItem() {
 
@@ -43,19 +41,27 @@ public class DoacaoDinheiro {
         this.data = data;
     }
 
-    public Doador getDoador() {
-        return doador;
+    public static float getValor() {
+        return valor;
     }
 
-    public void setDoador(Doador doador) {
-        this.doador = doador;
+    public static void setValor(float valor) {
+        DoacaoDinheiro.valor = valor;
+    }
+
+    public String getNomeConta() {
+        return nomeConta;
+    }
+
+    public void setNomeConta(String nomeConta) {
+        this.nomeConta = nomeConta;
+    }
+
+    public static float getResultado() {
+        return resultado;
     }
 
     public SimpleDateFormat getSdf() {
         return sdf;
-    }
-
-    public void setSdf(SimpleDateFormat sdf) {
-        this.sdf = sdf;
     }
 }

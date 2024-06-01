@@ -15,7 +15,7 @@ public class Relatorio {
         System.out.println("Relatorio Gerado no Dia: " + dataRelatorio);
         System.out.println("Contagem de Doações: " + quantidadeDoacoes());
         System.out.println("Contagem de Doadores: " + quantidadeDoadores());
-        System.out.println("Dinheiro Arrecadado: R$ " + DoacaoDinheiro.somaTotalValores());
+        System.out.println("Dinheiro Arrecadado: R$ " + DoacaoDinheiro.getResultado());
     }
 
     public int quantidadeDoacoes() {
