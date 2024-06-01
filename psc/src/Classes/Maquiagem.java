@@ -1,6 +1,9 @@
+package Classes;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
+
+import Arquivos.Arquivos;
 
 public class Maquiagem extends Doacao {
     private String descricaoMaquiagem; // Delineador, Blush, etc...

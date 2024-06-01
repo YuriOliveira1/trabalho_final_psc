@@ -1,8 +1,11 @@
+package Classes;
 import java.io.BufferedReader;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+
+import Arquivos.Arquivos;
 
 public class Doador {
     private String apelido;

@@ -1,9 +1,0 @@
-Maquiagem, 1, Yuri, 17/10/2005, Delineador
-Lenço, 1, Paulo, 17/10/2005, Azul, Cimento
-Cabelo, 1, Yuri, 17/10/2005, Castanho, Grande
-Dinheiro1000.0, Yuri Oliveira, 17/10/2005
-Dinheiro2000.0, Rogerio Piolho, 17/10/2005
-Dinheiro2000.0, Yuri Oliveira, 17/10/2005
-Dinheiro500.0, Oi, 18/10/2023
-Dinheiro500.0, Yuri Oliveira, 17/10/2005
-Dinheiro1000.0, Pato Oliveira, 17/10/2005

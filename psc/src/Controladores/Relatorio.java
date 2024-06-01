@@ -1,6 +1,10 @@
+package Controladores;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import Arquivos.Arquivos;
+import Classes.DoacaoDinheiro;
 
 public class Relatorio {
     private String dataRelatorio;

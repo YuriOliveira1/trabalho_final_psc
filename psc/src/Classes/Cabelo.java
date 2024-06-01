@@ -1,6 +1,9 @@
+package Classes;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
+
+import Arquivos.*;
 
 public class Cabelo extends Doacao {
 

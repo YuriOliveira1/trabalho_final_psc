@@ -1,7 +1,10 @@
+package Classes;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import Arquivos.Arquivos;
 
 public class DoacaoDinheiro {
     private static float valor;

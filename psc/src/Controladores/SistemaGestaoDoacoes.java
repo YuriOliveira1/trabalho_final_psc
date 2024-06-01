@@ -1,4 +1,9 @@
+package Controladores;
 import java.util.ArrayList;
+
+import Classes.Doacao;
+import Classes.DoacaoDinheiro;
+import Classes.Doador;
 
 public class SistemaGestaoDoacoes {
     private ArrayList<Doacao> listaDoacoes;

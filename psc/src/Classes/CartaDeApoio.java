@@ -1,5 +1,8 @@
+package Classes;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+
+import Arquivos.Arquivos;
 
 public class CartaDeApoio {
     private String nomeEscritor;

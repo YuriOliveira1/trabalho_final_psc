@@ -1,6 +1,9 @@
+package Classes;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
+
+import Arquivos.Arquivos;
 
 public class Lenco extends Doacao {
     private String corLenco;
