@@ -12,7 +12,7 @@ public class App {
         SistemaGestaoDoacoes sgd = new SistemaGestaoDoacoes();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        while (opcao != 4) {
+        while (opcao != 3) {
             opcao = menu(scan);
 
             if (opcao == 1) {
@@ -48,7 +48,6 @@ public class App {
                     maquiagem.registraDoacao(doacao);
                     sgd.adicionarDoacao(maquiagem);
                 } else if (opcaoTipo == 2) {
-                    doacao.setTipo("Lenço");
 
                     System.out.print("Cor do Lenço: ");
                     String corLenco = scan.nextLine();
@@ -59,7 +58,6 @@ public class App {
                     lenco.registraDoacao(lenco);
                     sgd.adicionarDoacao(lenco);
                 } else if (opcaoTipo == 3) {
-                    doacao.setTipo("Cabelo");
 
                     System.out.print("Cor do Cabelo: ");
                     String corCabelo = scan.nextLine();
@@ -69,18 +67,24 @@ public class App {
                     Cabelo cabelo = new Cabelo(quantidade, doador, dataFormat, corCabelo, tamanhoCabelo);
                     cabelo.registraDoacao(cabelo);
                     sgd.adicionarDoacao(cabelo);
-                } else if (opcaoTipo == 4) {
-                    doacao.setTipo("Dinheiro");
-
-                    System.out.print("Valor a ser doado: R$ ");
-                    float valor = scan.nextFloat();
-
-                    DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormat, doador);
-                    dinheiro.registraDoacaoDinheiro(dinheiro);
-                    sgd.adicionarDoacaoDinheiro(dinheiro);
                 }
-
             } else if (opcao == 2) {
+                scan.nextLine();
+                System.out.print("Nome da Conta: ");
+                String nomeConta = scan.nextLine();
+
+                System.out.print("Valor a ser doado: R$ ");
+                float valor = scan.nextFloat();
+                scan.nextLine(); 
+
+                System.out.print("Data da Doação: ");
+                String data = scan.nextLine();
+                Date dataFormat = sdf.parse(data);
+
+                DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormat, nomeConta);
+                dinheiro.registraDoacaoDinheiro(dinheiro);
+                sgd.adicionarDoacaoDinheiro(dinheiro);
+            } else if (opcao == 3) {
                 LocalDate dataAgora = LocalDate.now();
                 DateTimeFormatter Formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 String dataAtual = Formatada.format(dataAgora);
@@ -90,11 +94,10 @@ public class App {
 
                 Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
                 relatorio.gerarRelatorio();
-            } else if (opcao == 3) {
+            } else if (opcao == 4) {
                 System.out.println("Saindo...");
             }
         }
-
     }
 
     public static int menu(Scanner scan) {
@@ -102,14 +105,15 @@ public class App {
         boolean loop = false;
 
         while (!loop) {
-            System.out.println("1 - Realizar uma Doação");
-            System.out.println("2 - Gerar Relatorio");
-            System.out.println("3 - Sair");
+            System.out.println("1 - Realizar uma Doação de Objetos");
+            System.out.println("2 - Realizar uma Doação de Dinheiro");
+            System.out.println("3 - Gerar Relatorio");
+            System.out.println("4 - Sair");
 
             try {
                 opcao = scan.nextInt();
 
-                if (opcao >= 1 && opcao <= 3) {
+                if (opcao >= 1 && opcao <= 4) {
                     loop = true;
                 } else {
                     System.out.println("Coloque uma Opção Valida");
