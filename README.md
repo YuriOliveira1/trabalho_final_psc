@@ -1,7 +1,6 @@
 
 # Trabalho Prático: Programação de Soluções Computacionais
 
-A brief description of what this project does and who it's for
 
 
 ## Tecnologias
@@ -39,6 +38,9 @@ Para adequar melhor o software ao que está sendo planejado e solicitado, solici
 ## 3. Falando de Críticas 
 
 Após analisar os resultados dos três prompts que enviei, concluí que, às vezes, o ChatGPT pode fornecer respostas além do solicitado. Isso pode ser uma faca de dois gumes: dependendo do contexto, pode gerar bons resultados ou causar perda de tempo ao tentar corrigir excessos. Outro ponto importante é que, ao gerar requisitos funcionais, o modelo frequentemente utiliza exemplos de diversas fontes, aplicando-os à sua requisição sem que isso tenha sido explicitamente solicitado.
+
+Na criação das classes e das funções iniciais, parecia estar tudo certo, mas no decorrer do desenvolvimento do sistema, boa parte do que ele gerou tive que reconstruir do zero ou parcialmente. O GPT foi importante para gerar uma boa base para a construção do projeto, ajudando-me também a ter mais ideias de funções ou de como contornar algo confuso que ele gerou, transformando em algo bom na minha visão.
+
 
 Além desses pequenos pontos negativos, observei também uma geração de texto interessante por parte do GPT. Ele me forneceu uma função de cadastro de login e senha e, ao final, incluiu uma seção sobre segurança da informação dos indivíduos que participam do sistema de doações. Achei esse tópico relevante para comentar, dado o cenário atual. É crucial entender como um projeto similar funcionaria na prática, onde o anonimato é levado muito a sério para evitar constrangimentos para os envolvidos e prevenir que as doações sejam utilizadas para promoções pessoais ou de organizações específicas.
 
@@ -142,3 +144,11 @@ buscarDoacoesPorTipo(String) - Busca doações filtradas por tipo.
 - A classe SistemaGestaoDoacoes possui agregações das classes Doacao, DoacaoDinheiro e Doador, mantendo listas de todas as doações e doadores.
 
 - A classe Relatorio depende da classe SistemaGestaoDoacoes para acessar as listas de doações e gerar relatórios baseados nos dados.
+
+## 5. Estratégia de Programação com IA:
+
+Na parte de utilização de uma estratégia específica, acabei optando por utilizar todas as que estavam ao meu alcance e atendiam às minhas necessidades. No início, utilizei o GPT para me ajudar a entender as diferenças entre FileWriter e PrintWriter e qual seria a melhor opção para a minha necessidade. Também fiz mais perguntas sobre a utilização do append e a combinação entre FileWriter e PrintWriter. Outra pergunta que fiz foi sobre o uso da classe Date para trabalhar com datas. Após isso, pedi mais explicações e exemplos sobre o uso de diferentes tipos de patterns que eu poderia implementar no meu programa.
+
+Acabei utilizando o GPT mais no início do desenvolvimento do meu programa, pois foi quando surgiram mais dúvidas em relação à leitura de arquivos, utilização de datas e algumas tomadas de decisões para determinar qual abordagem seria mais adequada e eficiente para cada situação. No momento atual do desenvolvimento, estou utilizando o GPT para a correção de métodos, verificando se haverá algum problema com o buffer do Scanner ou se há algo que poderia ser um erro óbvio. Após passar por essa verificação, realizo meus próprios testes.
+
+Aprofundando um pouco nos conhecimentos e ideias, acabei estudando sobre Generics. Tive a ideia de armazenar certos objetos em uma lista e pensei em utilizá-la, mas não foi necessário. Também aprendi a utilizar o final para organizar os arquivos que precisava. Outra coisa que aprendi de forma bastante prática foram as Exceptions e como eu poderia criar as minhas próprias Exceptions.
