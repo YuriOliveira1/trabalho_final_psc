@@ -18,6 +18,7 @@ public class App {
             if (opcao == 1) {
                 System.out.print("Quantidade do Item a ser Doado: ");
                 int quantidade = scan.nextInt();
+                scan.nextLine();
                 System.out.print("Data da Doação: ");
                 String data = scan.nextLine();
                 Date dataFormat = sdf.parse(data);
@@ -31,14 +32,14 @@ public class App {
                 sgd.adicionarDoadores(doador);
 
                 Doacao doacao = new Doacao(quantidade, doador, dataFormat);
-
+                
                 opcaoTipo = menuTiposDoacoes(scan);
+                scan.nextLine();
                 // 1 - Maquiagem
                 // 2 - Lenço
                 // 3 - Cabelo
                 // 4 - Dinheiro
                 if (opcaoTipo == 1) {
-                    doacao.setTipo("Maquiagem");
 
                     System.out.print("Descrição Maquiagem: ");
                     String descricaoMaquiagem = scan.nextLine();
@@ -86,7 +87,7 @@ public class App {
 
                 System.out.print("Descrição do relatorio: ");
                 String tipoRelatorio = scan.nextLine();
-                
+
                 Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
                 relatorio.gerarRelatorio();
             } else if (opcao == 3) {
@@ -150,21 +151,5 @@ public class App {
             }
         }
         return opcao;
-    }
-
-    public static void controladorTiposDoacoes(int opcaoTipo) {
-        // 1 - Maquiagem
-        // 2 - Lenço
-        // 3 - Cabelo
-        // 4 - Dinheiro
-        if (opcaoTipo == 1) {
-
-        } else if (opcaoTipo == 2) {
-
-        } else if (opcaoTipo == 3) {
-
-        } else if (opcaoTipo == 4) {
-
-        }
     }
 }
