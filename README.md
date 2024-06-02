@@ -321,13 +321,42 @@ contato: String - Número de contato do doador.
 
 ### 4.2. Relações entre as Classes:
 
-- A classe Doacao tem uma associação com a classe Doador, onde cada doação é vinculada a um doador específico.
+1. **SistemaGestaoDoacoes:**
+   - Contém três listas: `listaDoacoes`, `listaDoacaoDinheiro` e `listaDoadores`.
+   - `listaDoacoes` armazena objetos do tipo `Doacao`.
+   - `listaDoacaoDinheiro` armazena objetos do tipo `DoacaoDinheiro`.
+   - `listaDoadores` armazena objetos do tipo `Doador`.
 
-- A classe DoacaoDinheiro também tem uma associação com a classe Doador.
+2. **Relatorio:**
+   - Utiliza objetos da classe `DoacaoDinheiro`.
+   - Utiliza objetos da classe `Doacao`.
+   - Contém atributos `dataRelatorio` e `tipoRelatorio`.
 
-- A classe SistemaGestaoDoacoes possui agregações das classes Doacao, DoacaoDinheiro e Doador, mantendo listas de todas as doações e doadores.
+3. **DoacaoDinheiro:**
+   - Herda da classe `Doacao`.
+   - Contém atributos `valor`, `data`, `nomeConta` e `resultado` (este último é estático).
 
-- A classe Relatorio depende da classe SistemaGestaoDoacoes para acessar as listas de doações e gerar relatórios baseados nos dados.
+4. **Doacao:**
+   - Contém os atributos `tipo`, `quantidade`, `doador` e `data`.
+
+5. **Doador:**
+   - Contém os atributos `apelido` e `contato`.
+
+6. **Cabelo:**
+   - Herda da classe `Doacao`.
+   - Contém os atributos `corCabelo` e `tamanhoCabelo`.
+
+7. **Maquiagem:**
+   - Herda da classe `Doacao`.
+   - Contém o atributo `descricaoMaquiagem`.
+
+8. **Lenco:**
+   - Herda da classe `Doacao`.
+   - Contém os atributos `corLenco` e `estiloLenco`.
+
+9. **CartaDeApoio:**
+   - Contém os atributos `nomeEscritor` e `textoDaCarta`.
+     
 
 ## 5. Estratégia de Programação com IA:
 
@@ -336,3 +365,6 @@ Na parte de utilização de uma estratégia específica, acabei optando por util
 Acabei utilizando o GPT mais no início do desenvolvimento do meu programa, pois foi quando surgiram mais dúvidas em relação à leitura de arquivos, utilização de datas e algumas tomadas de decisões para determinar qual abordagem seria mais adequada e eficiente para cada situação. No momento atual do desenvolvimento, estou utilizando o GPT para a correção de métodos, verificando se haverá algum problema com o buffer do Scanner ou se há algo que poderia ser um erro óbvio. Após passar por essa verificação, realizo meus próprios testes.
 
 Aprofundando um pouco nos conhecimentos e ideias, acabei estudando sobre Generics. Tive a ideia de armazenar certos objetos em uma lista e pensei em utilizá-la, mas não foi necessário. Também aprendi a utilizar o final para organizar os arquivos que precisava. Outra coisa que aprendi de forma bastante prática foram as Exceptions e como eu poderia criar as minhas próprias Exceptions.
+
+
+
