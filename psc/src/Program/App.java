@@ -19,112 +19,103 @@ public class App {
         SistemaGestaoDoacoes sgd = new SistemaGestaoDoacoes();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        try {
-            while (opcao != 5) {
-                opcao = menu(scan);
+        while (opcao != 5) {
+            opcao = menu(scan);
 
-                if (opcao == 1) {
-                    System.out.print("Quantidade do Item a ser Doado: ");
-                    int quantidade = scan.nextInt();
-                    scan.nextLine();
+            if (opcao == 1) {
+                int quantidade = lerInt(scan, "Quantidade do Item a ser Doado: ");
 
-                    System.out.print("Data da Doação: ");
-                    String data = scan.nextLine();
-                    Date dataFormat = sdf.parse(data);
+                Date dataFormatada = lerData(scan, sdf, "Data da Doação: ");
 
-                    if (verificadorDatas(dataFormat)) {
-                        System.out.print("Coloque uma data Valída: ");
-                        data = scan.nextLine();
-                        dataFormat = sdf.parse(data);
-                    }
-
-                    System.out.print("Apelido/Nome: ");
-                    String apelido = scan.nextLine();
-
-                    System.out.print("Contato: ");
-                    String contato = scan.nextLine();
-
-                    Doador doador = new Doador(apelido, contato);
-                    doador.cadastrarDoador(doador);
-                    sgd.adicionarDoadores(doador);
-
-                    Doacao doacao = new Doacao(quantidade, doador, dataFormat);
-
-                    opcaoTipo = menuTiposDoacoes(scan);
-                    scan.nextLine();
-                    if (opcaoTipo == 1) {
-
-                        System.out.print("Descrição Maquiagem: ");
-                        String descricaoMaquiagem = scan.nextLine();
-
-                        Maquiagem maquiagem = new Maquiagem(quantidade, doador, dataFormat, descricaoMaquiagem);
-                        maquiagem.registraDoacao(doacao);
-                        sgd.adicionarDoacao(maquiagem);
-                    } else if (opcaoTipo == 2) {
-
-                        System.out.print("Cor do Lenço: ");
-                        String corLenco = scan.nextLine();
-                        System.out.print("Estilo do Lenço: ");
-                        String estiloLenco = scan.nextLine();
-
-                        Lenco lenco = new Lenco(quantidade, doador, dataFormat, corLenco, estiloLenco);
-                        lenco.registraDoacao(lenco);
-                        sgd.adicionarDoacao(lenco);
-                    } else if (opcaoTipo == 3) {
-
-                        System.out.print("Cor do Cabelo: ");
-                        String corCabelo = scan.nextLine();
-                        System.out.print("Tamanho do Cabelo: ");
-                        String tamanhoCabelo = scan.nextLine();
-
-                        Cabelo cabelo = new Cabelo(quantidade, doador, dataFormat, corCabelo, tamanhoCabelo);
-                        cabelo.registraDoacao(cabelo);
-                        sgd.adicionarDoacao(cabelo);
-                    }
-                } else if (opcao == 2) {
-                    scan.nextLine();
-                    System.out.print("Nome da Conta: ");
-                    String nomeConta = scan.nextLine();
-
-                    System.out.print("Valor a ser doado: R$ ");
-                    float valor = scan.nextFloat();
-                    scan.nextLine();
-
-                    System.out.print("Data da Doação: ");
-                    String data = scan.nextLine();
-                    Date dataFormat = sdf.parse(data);
-
-                    DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormat, nomeConta);
-                    dinheiro.registraDoacaoDinheiro(dinheiro);
-                    sgd.adicionarDoacaoDinheiro(dinheiro);
-                } else if (opcao == 3) {
-                    System.out.print("Nome do Escritor: ");
-                    scan.nextLine();
-                    String nomeEscrito = scan.nextLine();
-
-                    System.out.print("Escreva um breve Texto de Apoio: ");
-                    String texto = scan.nextLine();
-
-                    CartaDeApoio cartaDeApoio = new CartaDeApoio(nomeEscrito, texto);
-                    cartaDeApoio.registarCarta(nomeEscrito, texto);
-                } else if (opcao == 4) {
-                    LocalDate dataAgora = LocalDate.now();
-                    DateTimeFormatter Formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    String dataAtual = Formatada.format(dataAgora);
-
-                    System.out.print("Descrição do relatorio: ");
-                    String tipoRelatorio = scan.nextLine();
-                    scan.next();
-
-                    Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
-                    relatorio.gerarRelatorio();
-                } else if (opcao == 5) {
-                    System.out.println("Saindo...");
+                if (verificadorDatas(dataFormatada)) {
+                    dataFormatada = lerData(scan, sdf, "Coloque uma data Valída: ");
                 }
+
+                System.out.print("Apelido/Nome: ");
+                String apelido = scan.nextLine();
+
+                System.out.print("Contato: ");
+                String contato = scan.nextLine();
+
+                Doador doador = new Doador(apelido, contato);
+                doador.cadastrarDoador(doador);
+                sgd.adicionarDoadores(doador);
+
+                Doacao doacao = new Doacao(quantidade, doador, dataFormatada);
+
+                opcaoTipo = menuTiposDoacoes(scan);
+                scan.nextLine();
+                if (opcaoTipo == 1) {
+
+                    System.out.print("Descrição Maquiagem: ");
+                    String descricaoMaquiagem = scan.nextLine();
+
+                    Maquiagem maquiagem = new Maquiagem(quantidade, doador, dataFormatada, descricaoMaquiagem);
+                    maquiagem.registraDoacao(doacao);
+                    sgd.adicionarDoacao(maquiagem);
+                } else if (opcaoTipo == 2) {
+
+                    System.out.print("Cor do Lenço: ");
+                    String corLenco = scan.nextLine();
+                    System.out.print("Estilo do Lenço: ");
+                    String estiloLenco = scan.nextLine();
+
+                    Lenco lenco = new Lenco(quantidade, doador, dataFormatada, corLenco, estiloLenco);
+                    lenco.registraDoacao(lenco);
+                    sgd.adicionarDoacao(lenco);
+                } else if (opcaoTipo == 3) {
+
+                    System.out.print("Cor do Cabelo: ");
+                    String corCabelo = scan.nextLine();
+                    System.out.print("Tamanho do Cabelo: ");
+                    String tamanhoCabelo = scan.nextLine();
+
+                    Cabelo cabelo = new Cabelo(quantidade, doador, dataFormatada, corCabelo, tamanhoCabelo);
+                    cabelo.registraDoacao(cabelo);
+                    sgd.adicionarDoacao(cabelo);
+                }
+            } else if (opcao == 2) {
+                scan.nextLine();
+                System.out.print("Nome da Conta: ");
+                String nomeConta = scan.nextLine();
+
+                float valor = lerFloat(scan, "Valor a ser doado: R$ ");
+
+                Date dataFormatada = lerData(scan, sdf, "Data da Doação: ");
+
+                if (verificadorDatas(dataFormatada)) {
+                    dataFormatada = lerData(scan, sdf, "Coloque uma data Valída: ");
+                }
+
+                DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormatada, nomeConta);
+                dinheiro.registraDoacaoDinheiro(dinheiro);
+                sgd.adicionarDoacaoDinheiro(dinheiro);
+            } else if (opcao == 3) {
+                System.out.print("Nome do Escritor: ");
+                scan.nextLine();
+                String nomeEscrito = scan.nextLine();
+
+                System.out.print("Escreva um breve Texto de Apoio: ");
+                String texto = scan.nextLine();
+
+                CartaDeApoio cartaDeApoio = new CartaDeApoio(nomeEscrito, texto);
+                cartaDeApoio.registarCarta(nomeEscrito, texto);
+            } else if (opcao == 4) {
+                LocalDate dataAgora = LocalDate.now();
+                DateTimeFormatter Formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String dataAtual = Formatada.format(dataAgora);
+
+                System.out.print("Descrição do relatorio: ");
+                String tipoRelatorio = scan.nextLine();
+                scan.next();
+
+                Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
+                relatorio.gerarRelatorio();
+            } else if (opcao == 5) {
+                System.out.println("Saindo...");
             }
-        } catch (Exception e) {
-            // TODO: handle exception
         }
+
     }
 
     public static int menu(Scanner scan) {
@@ -163,12 +154,11 @@ public class App {
             System.out.println("1 - Maquiagem");
             System.out.println("2 - Lenço");
             System.out.println("3 - Cabelo");
-            System.out.println("4 - Dinheiro");
 
             try {
                 opcao = scan.nextInt();
 
-                if (opcao >= 1 && opcao <= 4) {
+                if (opcao >= 1 && opcao <= 3) {
                     loop = true;
                 } else {
                     System.out.print("Escolha uma opção Valida: ");
@@ -193,5 +183,55 @@ public class App {
             System.out.println("Erro ao Analisar a Data");
         }
         return false;
+    }
+
+    public static int lerInt(Scanner scan, String texto) {
+        int valor = 0;
+        boolean valido = false;
+        while (!valido) {
+            try {
+                System.out.print(texto);
+                valor = scan.nextInt();
+                valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Insirá um número inteiro");
+                scan.next();
+            }
+        }
+        scan.nextLine(); // buffer
+        return valor;
+    }
+
+    public static float lerFloat(Scanner scan, String texto) {
+        float valor = 0;
+        boolean valido = false;
+        while (!valido) {
+            try {
+                System.out.print(texto);
+                valor = scan.nextFloat();
+                valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Insirá um número real");
+                scan.next();
+            }
+        }
+        scan.nextLine(); // buffer
+        return valor;
+    }
+
+    public static Date lerData(Scanner scan, SimpleDateFormat sdf, String texto) {
+        Date data = null;
+        boolean valido = false;
+        while (!valido) {
+            try {
+                System.out.print(texto);
+                String dataString = scan.nextLine();
+                data = sdf.parse(dataString);
+                valido = true;
+            } catch (ParseException e) {
+                System.out.println("Insirá um número data no formato Correto");
+            }
+        }
+        return data;
     }
 }
