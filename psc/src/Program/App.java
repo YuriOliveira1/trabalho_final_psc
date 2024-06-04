@@ -115,7 +115,7 @@ public class App {
                 System.out.println("Saindo...");
             }
         }
-
+        scan.close();
     }
 
     public static int menu(Scanner scan) {
