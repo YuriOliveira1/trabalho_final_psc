@@ -8,6 +8,11 @@
 - Java
 
 
+## Authors
+
+- [@YuriOliveira1](https://github.com/YuriOliveira1)
+- [@jaoolucazz](https://github.com/jaoolucazz)
+
 # Estrutura do Trabalho
 
 ## 1. Proposta: 
