@@ -35,7 +35,7 @@ Para adequar melhor o software ao que está sendo planejado e solicitado, solici
 - [Segundo Prompt](https://docs.google.com/document/d/1VLhJtMMzkSgRy0ryF72P3VVOF68CP-fIE2KJ9Tmxnmo/edit?usp=sharing)
 - [Terceiro Prompt](https://docs.google.com/document/d/1o729OxRmQf2MTi7RLdPO8rRgJph8U7Zfiz2lwwGpUBI/edit?usp=sharing)
 
-### 2.3. Adição de mais Funcionalidades:
+### 2.3. Funcionalidades Definitivas:
 
 - **Cadastro de Doações:** O sistema deve ser capaz de registrar diferentes tipos de doações, tais como maquiagem, cabelo, lenços e dinheiro. Além disso, ele deve permitir que o usuário insira especificações detalhadas para cada doação, como tipo, quantidade, data da doação, cores, Nome/Apelido(Apenas para uma  breve Identificação).
 - **Cadastro de Doações de Dinheiro:** O sistema deve ser capaz de registrar uma doação de dinheiro, especificações como nome da conta, valores e data da transação devem ser registradas e armazenadas.
@@ -47,6 +47,8 @@ Para adequar melhor o software ao que está sendo planejado e solicitado, solici
 ## 3. Falando de Críticas 
 
 Após analisar os resultados dos três prompts que enviei, concluí que, às vezes, o ChatGPT pode fornecer respostas além do solicitado. Isso pode ser uma faca de dois gumes: dependendo do contexto, pode gerar bons resultados ou causar perda de tempo ao tentar corrigir excessos. Outro ponto importante é que, ao gerar requisitos funcionais, o modelo frequentemente utiliza exemplos de diversas fontes, aplicando-os à sua requisição sem que isso tenha sido explicitamente solicitado.
+
+Na utilização do GPT para criação dos requisitos funcionais foi possivel observar um grande número de funcionalidades que nem se quer foram utilizadas, e boa parte foi removida e acabou sendo substituida, e tambem foi possivel gerar mais funcionalidades como as Doações de Dinheiro que são tratadas de forma diferente do resto das doações, o envio de Cartas e todo o sistema de armazenamento e de tratamento de exceções.
 
 Na criação das classes e das funções iniciais, parecia estar tudo certo, mas no decorrer do desenvolvimento do sistema, boa parte do que ele gerou tive que reconstruir do zero ou parcialmente. O GPT foi importante para gerar uma boa base para a construção do projeto, ajudando-me também a ter mais ideias de funções ou de como contornar algo confuso que ele gerou, transformando em algo bom na minha visão.
 
