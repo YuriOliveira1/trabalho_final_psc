@@ -8,13 +8,18 @@
 - Java
 
 
+## Authors
+
+- [@YuriOliveira1](https://github.com/YuriOliveira1)
+- [@jaoolucazz](https://github.com/jaoolucazz)
+
 # Estrutura do Trabalho
 
 ## 1. Proposta: 
 
 Nossa proposta é voltado para doações de cabelo, maquiagem, lenços e dinheiro para uma organização que auxilia mulheres com câncer, principalmente de mama. Após a quimioterapia, muitas mulheres enfrentam a perda de cabelo, o que pode afetar significativamente sua autoestima. Nosso objetivo é fornecer apoio e recursos para ajudá-las a enfrentar essa fase com mais confiança e dignidade.
 
-A ideia foi sugerida pela mãe do integrante Yuri de Oliveira(Link), que trabalhou em uma clínica chamada OncoMinas, localizada em Extrema-MG. OncoMinas é uma clínica oncológica que atende diversos pacientes com câncer. Uma das campanhas realizadas por essa clínica foi a "Campanha Laço Rosa", cujo principal objetivo era receber doações de cabelo, lenços e maquiagem para aumentar a autoestima das mulheres em tratamento
+A ideia foi sugerida pela mãe do integrante Yuri de Oliveira, que trabalhou em uma clínica chamada OncoMinas, localizada em Extrema-MG. OncoMinas é uma clínica oncológica que atende diversos pacientes com câncer. Uma das campanhas realizadas por essa clínica foi a "Campanha Laço Rosa", cujo principal objetivo era receber doações de cabelo, lenços e maquiagem para aumentar a autoestima das mulheres em tratamento
 
 ## 2. Solicitando os Requisitos Funcionais
 
@@ -27,7 +32,7 @@ Para adequar melhor o software ao que está sendo planejado e solicitado, solici
 - **Cadastro de Doações:** O sistema deve ser capaz de registrar diferentes tipos de doações, tais como maquiagem, cabelo, lenços e dinheiro. Além disso, ele deve permitir que o usuário insira especificações detalhadas para cada doação, como tipo, quantidade, data da doação, cores, Nome/Apelido(Apenas para uma  breve Identificação).
 - **Armazenar as Doações:** As informações das doações devem ser armazenadas em um arquivo de texto (TXT), proporcionando um controle e organização mais eficazes das doações realizadas.
 - **Gerador de Relatorio:** O sistema deve incluir uma opção para gerar relatórios que exibam a quantidade de cada tipo de item doado, como maquiagem, cabelo, dinheiro e lenços. Esses relatórios devem ser acessíveis ao usuário para proporcionar uma visão clara e detalhada das contribuições feitas
-- **Tratamento de Exeções:** Para garantir o bom funcionamento do software, é crucial que os desenvolvedores estejam cientes dos possíveis erros e exceções que o código possa gerar. Nesse sentido, é necessário implementar um sistema de logs que registre essas ocorrências em um arquivo de texto (TXT). Isso permitirá uma análise detalhada dos eventos e facilitará a identificação e correção de problemas no software.
+- **Tratamento de Exeções:** Para garantir o bom funcionamento do software, é crucial que os desenvolvedores realizem todos os tratamentos de exceções para garantir um bom software.
 
 ### 2.2. Prompts Usados:
 
@@ -35,19 +40,24 @@ Para adequar melhor o software ao que está sendo planejado e solicitado, solici
 - [Segundo Prompt](https://docs.google.com/document/d/1VLhJtMMzkSgRy0ryF72P3VVOF68CP-fIE2KJ9Tmxnmo/edit?usp=sharing)
 - [Terceiro Prompt](https://docs.google.com/document/d/1o729OxRmQf2MTi7RLdPO8rRgJph8U7Zfiz2lwwGpUBI/edit?usp=sharing)
 
-### 2.3. Adição de mais Funcionalidades:
+### 2.3. Funcionalidades Definitivas:
 
-No decorrer do desenvolvimento foi modificado diversas funcionalidades e até mesmo outras ideias foram pensadas e colocadas em produção, a utilização da IA foi de grande importancia devido a toda uma estrutura base que ela me proporcionou, facilitando e reduzindo drasticamente o tempo que iria gastar pensando, errando e fazendo os requisitos. Toda essa base da IA que foi fornecida foi aproveitada e melhorada. Umas das novas funcionalidades que foi adicionada foi a parte de escrita de Cartas de Apoio, funcionalidade que não existiu com a IA.
+- **Cadastro de Doações:** O sistema deve ser capaz de registrar diferentes tipos de doações, tais como maquiagem, cabelo, lenços e dinheiro. Além disso, ele deve permitir que o usuário insira especificações detalhadas para cada doação, como tipo, quantidade, data da doação, cores, Nome/Apelido(Apenas para uma  breve Identificação).
+- **Cadastro de Doações de Dinheiro:** O sistema deve ser capaz de registrar uma doação de dinheiro, especificações como nome da conta, valores e data da transação devem ser registradas e armazenadas.
+- **Envio de Cartas:** Será possivel enviar cartas de apoio para enviar para as pessoas que seram beneficiadas, o sistema deve ser capaz de registras essas cartas com seu texto e escritor.
+- **Armazenar as Doações:** As informações das doações devem ser armazenadas em um arquivo de texto (TXT), proporcionando um controle e organização mais eficazes das doações realizadas.
+- **Gerador de Relatorio:** O sistema deve incluir uma opção para gerar relatórios que exibam a quantidade de cada tipo de item doado, como maquiagem, cabelo, dinheiro e lenços. Esses relatórios devem ser acessíveis ao usuário para proporcionar uma visão clara e detalhada das contribuições feitas
+- **Tratamento de Exeções:** Para garantir o bom funcionamento do software, é crucial que os desenvolvedores realizem todos os tratamentos de exceções para garantir um bom software.
 
 ## 3. Falando de Críticas 
 
-Após analisar os resultados dos três prompts que enviei, concluí que, às vezes, o ChatGPT pode fornecer respostas além do solicitado. Isso pode ser uma faca de dois gumes: dependendo do contexto, pode gerar bons resultados ou causar perda de tempo ao tentar corrigir excessos. Outro ponto importante é que, ao gerar requisitos funcionais, o modelo frequentemente utiliza exemplos de diversas fontes, aplicando-os à sua requisição sem que isso tenha sido explicitamente solicitado.
+Após revisar os resultados dos três prompts enviados ao ChatGPT, conclui que a capacidade do modelo em fornecer respostas além do solicitado pode ter efeitos positivos e negativos. Dependendo do contexto, isso pode enriquecer os resultados ou causar perda de tempo ao tentar corrigir excessos.
 
-Na criação das classes e das funções iniciais, parecia estar tudo certo, mas no decorrer do desenvolvimento do sistema, boa parte do que ele gerou tive que reconstruir do zero ou parcialmente. O GPT foi importante para gerar uma boa base para a construção do projeto, ajudando-me também a ter mais ideias de funções ou de como contornar algo confuso que ele gerou, transformando em algo bom na minha visão.
+Ao utilizar o ChatGPT para a criação de requisitos funcionais, observei que o modelo frequentemente sugere funcionalidades que não foram solicitadas. Isso pode enriquecer o projeto com novas ideias, mas também exige um esforço adicional para filtrar o que realmente é necessário. Muitas das funcionalidades geradas acabaram sendo removidas ou substituídas. Além disso, o ChatGPT utiliza exemplos de diversas fontes e os aplica à solicitação. Embora isso possa trazer ideias inovadoras, pode resultar em informações não pertinentes ou não desejadas. Durante o processo, algumas funcionalidades sugeridas pelo modelo, como o tratamento diferenciado para Doações de Dinheiro, o envio de Cartas e todo o sistema de armazenamento e tratamento de exceções, se mostraram úteis e foram incorporadas ao projeto.
 
+Na criação das classes e funções iniciais, parecia que tudo estava correto, mas durante o desenvolvimento do sistema, boa parte do que foi gerado precisou ser reconstruída do zero ou parcialmente. O ChatGPT foi importante para gerar uma boa base para a construção do projeto, ajudando-me também a ter mais ideias de funções ou de como contornar algo confuso que ele gerou, transformando-o em algo bom na minha visão.
 
-Além desses pequenos pontos negativos, observei também uma geração de texto interessante por parte do GPT. Ele me forneceu uma função de cadastro de login e senha e, ao final, incluiu uma seção sobre segurança da informação dos indivíduos que participam do sistema de doações. Achei esse tópico relevante para comentar, dado o cenário atual. É crucial entender como um projeto similar funcionaria na prática, onde o anonimato é levado muito a sério para evitar constrangimentos para os envolvidos e prevenir que as doações sejam utilizadas para promoções pessoais ou de organizações específicas.
-
+Além desses pequenos pontos negativos, observei uma geração de texto interessante por parte do ChatGPT. Ele forneceu uma função de cadastro de login e senha e, ao final, incluiu uma seção sobre segurança da informação dos indivíduos que participam do sistema de doações. Esse tópico é relevante, dado o cenário atual. É crucial entender como um projeto similar funcionaria na prática, onde o anonimato é levado muito a sério para evitar constrangimentos para os envolvidos e prevenir que as doações sejam utilizadas para promoções pessoais ou de organizações específicas.
 
 ## 4. Diagrama de Classes
 
@@ -366,5 +376,4 @@ Acabei utilizando o GPT mais no início do desenvolvimento do meu programa, pois
 
 Aprofundando um pouco nos conhecimentos e ideias, acabei estudando sobre Generics. Tive a ideia de armazenar certos objetos em uma lista e pensei em utilizá-la, mas não foi necessário. Também aprendi a utilizar o final para organizar os arquivos que precisava. Outra coisa que aprendi de forma bastante prática foram as Exceptions e como eu poderia criar as minhas próprias Exceptions.
 
-
-
+Utilizamos bastante o GPT para nos informar sobre a melhor escolha para resolver determinados problemas. Um desses problemas que gerou bastante dúvida foi na parte de tratamento de exceções, onde tínhamos vários tipos de exceções e precisávamos utilizar o Scanner logo após. O GPT nos deu uma opção bastante interessante, sugerindo o uso de métodos para tratar, ler e exibir o texto para o usuário em apenas uma linha. Isso não apenas facilitou o tratamento das exceções, mas também simplificou o código e reduziu o número de linhas necessárias.
