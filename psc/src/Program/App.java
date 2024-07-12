@@ -8,15 +8,21 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Classes.*;
-import Controladores.*;
+
+import model.entities.Cabelo;
+import model.entities.CartaDeApoio;
+import model.entities.Doacao;
+import model.entities.DoacaoDinheiro;
+import model.entities.Doador;
+import model.entities.Lenco;
+import model.entities.Maquiagem;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         int opcao = 1;
         int opcaoTipo = 1;
-        SistemaGestaoDoacoes sgd = new SistemaGestaoDoacoes();
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         while (opcao != 5) {
@@ -39,7 +45,7 @@ public class App {
 
                 Doador doador = new Doador(apelido, contato);
                 doador.cadastrarDoador(doador);
-                sgd.adicionarDoadores(doador);
+                
 
                 Doacao doacao = new Doacao(quantidade, doador, dataFormatada);
 
@@ -52,7 +58,7 @@ public class App {
 
                     Maquiagem maquiagem = new Maquiagem(quantidade, doador, dataFormatada, descricaoMaquiagem);
                     maquiagem.registraDoacao(doacao);
-                    sgd.adicionarDoacao(maquiagem);
+                    
                 } else if (opcaoTipo == 2) {
 
                     System.out.print("Cor do Lenço: ");
@@ -62,7 +68,7 @@ public class App {
 
                     Lenco lenco = new Lenco(quantidade, doador, dataFormatada, corLenco, estiloLenco);
                     lenco.registraDoacao(lenco);
-                    sgd.adicionarDoacao(lenco);
+                    
                 } else if (opcaoTipo == 3) {
 
                     System.out.print("Cor do Cabelo: ");
@@ -72,7 +78,7 @@ public class App {
 
                     Cabelo cabelo = new Cabelo(quantidade, doador, dataFormatada, corCabelo, tamanhoCabelo);
                     cabelo.registraDoacao(cabelo);
-                    sgd.adicionarDoacao(cabelo);
+                    
                 }
             } else if (opcao == 2) {
                 scan.nextLine();
@@ -89,7 +95,7 @@ public class App {
 
                 DoacaoDinheiro dinheiro = new DoacaoDinheiro(valor, dataFormatada, nomeConta);
                 dinheiro.registraDoacaoDinheiro(dinheiro);
-                sgd.adicionarDoacaoDinheiro(dinheiro);
+                
             } else if (opcao == 3) {
                 System.out.print("Nome do Escritor: ");
                 scan.nextLine();
@@ -109,8 +115,7 @@ public class App {
                 String tipoRelatorio = scan.nextLine();
                 scan.next();
 
-                Relatorio relatorio = new Relatorio(dataAtual, tipoRelatorio);
-                relatorio.gerarRelatorio();
+               
             } else if (opcao == 5) {
                 System.out.println("Saindo...");
             }
