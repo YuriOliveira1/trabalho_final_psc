@@ -1,17 +1,19 @@
 package model.entities;
 
 public class CartaDeApoio {
+    private Integer idCarta;
     private String nomeEscritor;
     private String textoDaCarta;
 
-    public CartaDeApoio(String nomeEscritor, String textoDaCarta) {
+    public CartaDeApoio(Integer idCarta, String nomeEscritor, String textoDaCarta) {
+        this.idCarta = idCarta;
         this.nomeEscritor = nomeEscritor;
         this.textoDaCarta = textoDaCarta;
     }
 
     public CartaDeApoio() {
     }
-
+    
     public String getNomeEscritor() {
         return nomeEscritor;
     }
@@ -62,5 +64,13 @@ public class CartaDeApoio {
     @Override
     public String toString() {
         return "CartaDeApoio [nomeEscritor=" + nomeEscritor + ", textoDaCarta=" + textoDaCarta + "]";
+    }
+
+    public Integer getIdCarta() {
+        return idCarta;
+    }
+
+    public void setIdCarta(Integer idCarta) {
+        this.idCarta = idCarta;
     }
 }

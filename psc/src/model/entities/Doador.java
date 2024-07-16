@@ -1,10 +1,12 @@
 package model.entities;
 
 public class Doador {
+    private Integer id;
     private String apelido;
     private String contato;
 
-    public Doador(String apelido, String contato) {
+    public Doador(Integer id, String apelido, String contato) {
+        this.id = id;
         this.apelido = apelido;
         this.contato = contato;
     }
@@ -62,5 +64,13 @@ public class Doador {
     @Override
     public String toString() {
         return "Doador [apelido=" + apelido + ", contato=" + contato + "]";
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -4,17 +4,22 @@ import java.util.Date;
 
 public class Cabelo extends Doacao {
 
+    private Integer idCabelo;
     private String corCabelo;
     private String tamanhoCabelo;
 
-    public Cabelo(int quantidade, Doador doador, Date data, String corCabelo, String tamanhoCabelo) {
-        super(quantidade, doador, data);
+    public Cabelo(Integer id, int quantidade, Doador doador, Date data, Integer idCabelo, String corCabelo,
+            String tamanhoCabelo) {
+        super(id, quantidade, doador, data);
+        this.idCabelo = idCabelo;
         this.corCabelo = corCabelo;
         this.tamanhoCabelo = tamanhoCabelo;
     }
 
-    public Cabelo(int quantidade, Doador doador, Date data) {
-        super(quantidade, doador, data);
+    public Cabelo(Integer idCabelo, String corCabelo, String tamanhoCabelo) {
+        this.idCabelo = idCabelo;
+        this.corCabelo = corCabelo;
+        this.tamanhoCabelo = tamanhoCabelo;
     }
 
     public String getCorCabelo() {
@@ -68,4 +73,13 @@ public class Cabelo extends Doacao {
     public String toString() {
         return "Cabelo [corCabelo=" + corCabelo + ", tamanhoCabelo=" + tamanhoCabelo + "]";
     }
+
+    public Integer getIdCabelo() {
+        return idCabelo;
+    }
+
+    public void setIdCabelo(Integer idCabelo) {
+        this.idCabelo = idCabelo;
+    }
+
 }

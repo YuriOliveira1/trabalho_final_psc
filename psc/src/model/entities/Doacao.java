@@ -3,18 +3,20 @@ package model.entities;
 import java.util.Date;
 
 public class Doacao {
+    private Integer id;
     private String tipo;
     private int quantidade;
     private Doador doador;
     private Date data;
     
-    public Doacao(int quantidade, Doador doador, Date data) {
+    public Doacao(Integer id, int quantidade, Doador doador, Date data) {
+        this.id = id;
         this.quantidade = quantidade;
         this.doador = doador;
         this.data = data;
         this.tipo = ""; 
     }
-
+    
     public Doacao() {
     }
 
@@ -93,5 +95,13 @@ public class Doacao {
     @Override
     public String toString() {
         return "Doacao [tipo=" + tipo + ", quantidade=" + quantidade + ", doador=" + doador + ", data=" + data + "]";
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

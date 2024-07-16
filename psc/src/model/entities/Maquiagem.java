@@ -2,15 +2,18 @@ package model.entities;
 import java.util.Date;
 
 public class Maquiagem extends Doacao {
+    private Integer idMaq;
     private String descricaoMaquiagem; // Delineador, Blush, etc...
-    
-    public Maquiagem(int quantidade, Doador doador, Date data, String descricaoMaquiagem) {
-        super(quantidade, doador, data);
+
+    public Maquiagem(Integer id, int quantidade, Doador doador, Date data, Integer idMaq, String descricaoMaquiagem) {
+        super(id, quantidade, doador, data);
+        this.idMaq = idMaq;
         this.descricaoMaquiagem = descricaoMaquiagem;
     }
 
-    public Maquiagem(int quantidade, Doador doador, Date data) {
-        super(quantidade, doador, data);
+    public Maquiagem(Integer idMaq, String descricaoMaquiagem) {
+        this.idMaq = idMaq;
+        this.descricaoMaquiagem = descricaoMaquiagem;
     }
 
     public String getDescricaoMaquiagem() {
@@ -50,5 +53,13 @@ public class Maquiagem extends Doacao {
         } else if (!descricaoMaquiagem.equals(other.descricaoMaquiagem))
             return false;
         return true;
+    }
+
+    public Integer getIdMaq() {
+        return idMaq;
+    }
+
+    public void setIdMaq(Integer idMaq) {
+        this.idMaq = idMaq;
     }
 }

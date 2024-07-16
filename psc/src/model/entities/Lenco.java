@@ -3,17 +3,25 @@ import java.util.Date;
 
 
 public class Lenco extends Doacao {
+    private Integer idLenco;
     private String corLenco;
     private String estiloLenco;
 
-    public Lenco(int quantidade, Doador doador, Date data, String corLenco, String estiloLenco) {
-        super(quantidade, doador, data);
+    
+
+    
+    public Lenco(Integer id, int quantidade, Doador doador, Date data, Integer idLenco, String corLenco,
+            String estiloLenco) {
+        super(id, quantidade, doador, data);
+        this.idLenco = idLenco;
         this.corLenco = corLenco;
         this.estiloLenco = estiloLenco;
     }
 
-    public Lenco(int quantidade, Doador doador, Date data) {
-        super(quantidade, doador, data);
+    public Lenco(Integer idLenco, String corLenco, String estiloLenco) {
+        this.idLenco = idLenco;
+        this.corLenco = corLenco;
+        this.estiloLenco = estiloLenco;
     }
 
     public String getCorLenco() {
@@ -66,5 +74,13 @@ public class Lenco extends Doacao {
         } else if (!estiloLenco.equals(other.estiloLenco))
             return false;
         return true;
+    }
+
+    public Integer getIdLenco() {
+        return idLenco;
+    }
+
+    public void setIdLenco(Integer idLenco) {
+        this.idLenco = idLenco;
     }
 }

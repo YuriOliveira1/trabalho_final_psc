@@ -3,12 +3,13 @@ import java.util.Date;
 
 
 public class DoacaoDinheiro {
+    private Integer id;
     private static float valor;
     private Date data;
     private String nomeConta;
 
-    public DoacaoDinheiro(float valor, Date data, String nomeConta) {
-        DoacaoDinheiro.valor = valor;
+    public DoacaoDinheiro(Integer id, Date data, String nomeConta) {
+        this.id = id;
         this.data = data;
         this.nomeConta = nomeConta;
     }
@@ -74,5 +75,13 @@ public class DoacaoDinheiro {
     @Override
     public String toString() {
         return "DoacaoDinheiro [data=" + data + ", nomeConta=" + nomeConta + "]";
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
