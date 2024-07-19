@@ -1,28 +1,24 @@
 package model.entities;
+
 import java.util.Date;
 
-
 public class DoacaoDinheiro {
+
     private Integer id;
-    private static float valor;
+    private float valor;
     private Date data;
     private String nomeConta;
+    private Doacao doacao;
 
-    public DoacaoDinheiro(Integer id, Date data, String nomeConta) {
+    public DoacaoDinheiro(Integer id, float valor, Date data, String nomeConta, Doacao doacao) {
         this.id = id;
+        this.valor = valor;
         this.data = data;
         this.nomeConta = nomeConta;
+        this.doacao = doacao;
     }
 
     public DoacaoDinheiro() {
-    }
-
-    public static float getValor() {
-        return valor;
-    }
-
-    public static void setValor(float valor) {
-        DoacaoDinheiro.valor = valor;
     }
 
     public Date getData() {
@@ -72,16 +68,32 @@ public class DoacaoDinheiro {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "DoacaoDinheiro [data=" + data + ", nomeConta=" + nomeConta + "]";
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public Doacao getDoacao() {
+        return doacao;
+    }
+
+    public void setDoacao(Doacao doacao) {
+        this.doacao = doacao;
+    }
+
+    @Override
+    public String toString() {
+        return "DoacaoDinheiro [id=" + id + ", valor=" + valor + ", data=" + data + ", nomeConta=" + nomeConta + "]";
     }
 }

@@ -9,12 +9,12 @@ public class Doacao {
     private Doador doador;
     private Date data;
     
-    public Doacao(Integer id, int quantidade, Doador doador, Date data) {
+    public Doacao(Integer id, String tipo, int quantidade, Doador doador, Date data) {
         this.id = id;
         this.quantidade = quantidade;
         this.doador = doador;
         this.data = data;
-        this.tipo = ""; 
+        this.tipo = tipo; 
     }
     
     public Doacao() {
