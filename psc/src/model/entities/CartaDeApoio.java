@@ -61,9 +61,11 @@ public class CartaDeApoio {
         return true;
     }
 
+
     @Override
     public String toString() {
-        return "CartaDeApoio [nomeEscritor=" + nomeEscritor + ", textoDaCarta=" + textoDaCarta + "]";
+        return "CartaDeApoio [idCarta=" + idCarta + ", nomeEscritor=" + nomeEscritor + ", textoDaCarta=" + textoDaCarta
+                + "]";
     }
 
     public Integer getIdCarta() {

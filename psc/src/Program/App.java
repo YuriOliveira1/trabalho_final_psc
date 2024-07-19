@@ -8,15 +8,10 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-import model.entities.Cabelo;
 import model.entities.CartaDeApoio;
 import model.entities.Doacao;
 import model.entities.DoacaoDinheiro;
 import model.entities.Doador;
-import model.entities.Lenco;
-import model.entities.Maquiagem;
-
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);

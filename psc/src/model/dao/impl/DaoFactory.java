@@ -2,6 +2,7 @@ package model.dao.impl;
 
 import database.DB;
 import model.dao.DAO;
+import model.entities.CartaDeApoio;
 import model.entities.Doacao;
 import model.entities.DoacaoDinheiro;
 import model.entities.Doador;
@@ -19,4 +20,8 @@ public class DaoFactory {
     public static DAO<DoacaoDinheiro> createDinheiroDao(){
         return new DoacaoDinheiroJDBC(DB.getConnection());
     }   
+
+    public static DAO<CartaDeApoio> createCartaApoioDao(){
+        return new CartaDeApoioJDBC(DB.getConnection());
+    }
 }
