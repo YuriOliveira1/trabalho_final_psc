@@ -29,6 +29,9 @@
                 <MenuItem mnemonicParsing="false" text="Deletar Carta" />
                 <MenuItem mnemonicParsing="false" text="Deletar Doador" />
             </Menu>
+            <Menu mnemonicParsing="false" text="Sobre">
+                <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre"/>
+            </Menu>
         </MenuBar>
     </VBox>
 </ScrollPane>
