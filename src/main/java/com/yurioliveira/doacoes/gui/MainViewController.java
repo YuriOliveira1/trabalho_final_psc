@@ -1,5 +1,6 @@
-package com.yurioliveira.doacoes;
+package com.yurioliveira.doacoes.gui;
 
+import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,7 +32,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoNormalAction() {
-        System.out.println("onMenuItemDoacaoNormalAction");
+        loadView("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml");
     }
 
     @FXML
@@ -47,7 +47,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSobreAction() {
-        loadView();
+        loadView("/com/yurioliveira/doacoes/About.fxml");
     }
 
     @Override
@@ -55,9 +55,9 @@ public class MainViewController implements Initializable {
 
     }
 
-    private void loadView() {
+    private void loadView(String pathName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("About.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(pathName));
             VBox newVBox = loader.load();
 
             Scene principalScene = Main.getPrincipalScene();
