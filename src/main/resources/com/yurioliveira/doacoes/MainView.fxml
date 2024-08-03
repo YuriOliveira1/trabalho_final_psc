@@ -6,43 +6,29 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22">
-   <content>
-      <VBox prefHeight="401.0" prefWidth="598.0">
-         <children>
-            <MenuBar prefHeight="36.0" prefWidth="185.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="Realizar Doação">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Doação Normal" />
-                        <MenuItem mnemonicParsing="false" text="Doação em Dinheiro" />
-                        <MenuItem mnemonicParsing="false" text="Carta de Apoio" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Buscar">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Buscar Doação Normal" />
-                        <MenuItem mnemonicParsing="false" text="Buscar Doação em Dinheiro" />
-                        <MenuItem mnemonicParsing="false" text="Buscar Cartas" />
-                        <MenuItem mnemonicParsing="false" text="Buscar Doador" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Geração de Relatorio">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Gerar Relatorio" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Deletar">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Deletar Doação Normal" />
-                        <MenuItem mnemonicParsing="false" text="Deletar Doação Em Dinheiro" />
-                        <MenuItem mnemonicParsing="false" text="Deletar Carta" />
-                        <MenuItem mnemonicParsing="false" text="Deletar Doador" />
-                     </items>
-                  </Menu>
-              </menus>
-            </MenuBar>
-         </children>
-      </VBox>
-   </content>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.MainViewController">
+    <VBox prefHeight="401.0" prefWidth="598.0">
+        <MenuBar prefHeight="36.0" prefWidth="185.0">
+            <Menu mnemonicParsing="false" text="Realizar Doação">
+                <MenuItem fx:id="menuItemDoacaoNormal" mnemonicParsing="false" onAction="#onMenuItemDoacaoNormalAction" text="Doação Normal" />
+                <MenuItem fx:id="menuItemDoacaoDinheiro" mnemonicParsing="false" onAction="#onMenuItemDoacaoDinheiroAction" text="Doação em Dinheiro" />
+                <MenuItem fx:id="menuItemDoacaoCartaApoio" mnemonicParsing="false" onAction="#onMenuItemDoacaoCartaApoioAction" text="Carta de Apoio" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Buscar">
+                <MenuItem mnemonicParsing="false" text="Buscar Doação Normal" />
+                <MenuItem mnemonicParsing="false" text="Buscar Doação em Dinheiro" />
+                <MenuItem mnemonicParsing="false" text="Buscar Cartas" />
+                <MenuItem mnemonicParsing="false" text="Buscar Doador" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Geração de Relatório">
+                <MenuItem mnemonicParsing="false" text="Gerar Relatório" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Deletar">
+                <MenuItem mnemonicParsing="false" text="Deletar Doação Normal" />
+                <MenuItem mnemonicParsing="false" text="Deletar Doação Em Dinheiro" />
+                <MenuItem mnemonicParsing="false" text="Deletar Carta" />
+                <MenuItem mnemonicParsing="false" text="Deletar Doador" />
+            </Menu>
+        </MenuBar>
+    </VBox>
 </ScrollPane>
