@@ -2,6 +2,7 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
+import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +33,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoNormalAction() {
-        loadView("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml");
+        loadView2("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml");
     }
 
     @FXML
@@ -71,6 +72,35 @@ public class MainViewController implements Initializable {
             mainVbox.getChildren().clear();
             mainVbox.getChildren().add(menu);
             mainVbox.getChildren().addAll(newVBox.getChildren());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alerts.showAlert("IO Exception", "Error ao Carregar a Pagina", e.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alerts.showAlert("Exception", "Erro Inesperado", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void loadView2(String pathName) {
+        try {
+            URL fxmlLocation = getClass().getResource(pathName);
+            if (fxmlLocation == null) {
+                throw new IOException("FXML file not found at specified path.");
+            }
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            VBox newVBox = loader.load();
+
+            Scene principalScene = Main.getPrincipalScene();
+            VBox mainVbox = (VBox) ((ScrollPane) principalScene.getRoot()).getContent();
+
+            Node menu = mainVbox.getChildren().get(0);
+            mainVbox.getChildren().clear();
+            mainVbox.getChildren().add(menu);
+            mainVbox.getChildren().addAll(newVBox.getChildren());
+
+            DoacaoNListaController controller = loader.getController();
+            controller.setDoacaoNormalService(new DoacaoNormalService());
+            controller.updateTableView();
         } catch (IOException e) {
             e.printStackTrace();
             Alerts.showAlert("IO Exception", "Error ao Carregar a Pagina", e.getMessage(), Alert.AlertType.ERROR);

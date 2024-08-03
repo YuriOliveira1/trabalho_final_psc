@@ -2,7 +2,9 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.model.entities.Doacao;
-import com.yurioliveira.doacoes.model.entities.Doador;
+import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,9 +16,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DoacaoNListaController implements Initializable {
+
+    private DoacaoNormalService doacaoNormalService;
 
     @FXML
     private TableView<Doacao> tableViewDoacoes;
@@ -42,12 +47,18 @@ public class DoacaoNListaController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
+    private ObservableList<Doacao> obsList;
+
     @FXML
     public void onBtnRegistrarAction() {
         System.out.println("VAPOOOOO");
     }
 
     public DoacaoNListaController() {
+    }
+
+    public void setDoacaoNormalService(DoacaoNormalService doacaoNormalService) {
+        this.doacaoNormalService = doacaoNormalService;
     }
 
     @Override
@@ -67,5 +78,15 @@ public class DoacaoNListaController implements Initializable {
         Stage stage = (Stage) Main.getPrincipalScene().getWindow();
         tableViewDoacoes.prefWidthProperty().bind(stage.heightProperty());
         tableViewDoacoes.prefWidthProperty().bind(stage.widthProperty());
+    }
+
+    public void updateTableView() throws IllegalAccessException {
+        if (doacaoNormalService == null) {
+            throw new IllegalAccessException("Serviço com Erro");
+        }
+
+        List<Doacao> list = doacaoNormalService.findAll();
+        obsList = FXCollections.observableArrayList(list);
+        tableViewDoacoes.setItems(obsList);
     }
 }

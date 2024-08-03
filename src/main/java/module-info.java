@@ -6,5 +6,6 @@ module com.yurioliveira.doacoes {
 
     opens com.yurioliveira.doacoes to javafx.fxml;
     opens com.yurioliveira.doacoes.gui to javafx.fxml;
+    opens com.yurioliveira.doacoes.model.entities to javafx.base;
     exports com.yurioliveira.doacoes;
 }
