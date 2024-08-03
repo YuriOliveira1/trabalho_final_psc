@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22">
+   <content>
+      <VBox prefHeight="401.0" prefWidth="598.0">
+         <children>
+            <MenuBar prefHeight="36.0" prefWidth="185.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Realizar Doação">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Doação Normal" />
+                        <MenuItem mnemonicParsing="false" text="Doação em Dinheiro" />
+                        <MenuItem mnemonicParsing="false" text="Carta de Apoio" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Buscar">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Buscar Doação Normal" />
+                        <MenuItem mnemonicParsing="false" text="Buscar Doação em Dinheiro" />
+                        <MenuItem mnemonicParsing="false" text="Buscar Cartas" />
+                        <MenuItem mnemonicParsing="false" text="Buscar Doador" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Geração de Relatorio">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Gerar Relatorio" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Deletar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Deletar Doação Normal" />
+                        <MenuItem mnemonicParsing="false" text="Deletar Doação Em Dinheiro" />
+                        <MenuItem mnemonicParsing="false" text="Deletar Carta" />
+                        <MenuItem mnemonicParsing="false" text="Deletar Doador" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
