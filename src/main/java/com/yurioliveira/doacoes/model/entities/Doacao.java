@@ -44,6 +44,10 @@ public class Doacao {
         this.doador = doador;
     }
 
+    public Integer getDoadorId(){
+        return (doador != null) ? doador.getId() : null;
+    }
+
     public Date getData() {
         return data;
     }

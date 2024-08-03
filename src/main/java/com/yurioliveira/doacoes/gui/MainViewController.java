@@ -57,7 +57,11 @@ public class MainViewController implements Initializable {
 
     private void loadView(String pathName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(pathName));
+            URL fxmlLocation = getClass().getResource(pathName);
+            if (fxmlLocation == null) {
+                throw new IOException("FXML file not found at specified path.");
+            }
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
             VBox newVBox = loader.load();
 
             Scene principalScene = Main.getPrincipalScene();
@@ -68,7 +72,11 @@ public class MainViewController implements Initializable {
             mainVbox.getChildren().add(menu);
             mainVbox.getChildren().addAll(newVBox.getChildren());
         } catch (IOException e) {
+            e.printStackTrace();
             Alerts.showAlert("IO Exception", "Error ao Carregar a Pagina", e.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alerts.showAlert("Exception", "Erro Inesperado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 }
