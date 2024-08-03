@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class MainViewController implements Initializable {
 
@@ -33,7 +34,14 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoNormalAction() {
-        loadView2("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml");
+        loadView("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml", (DoacaoNListaController controller) -> {
+            controller.setDoacaoNormalService(new DoacaoNormalService());
+            try {
+                controller.updateTableView();
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -48,7 +56,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSobreAction() {
-        loadView("/com/yurioliveira/doacoes/About.fxml");
+        loadView("/com/yurioliveira/doacoes/About.fxml", x -> {});
     }
 
     @Override
@@ -56,32 +64,7 @@ public class MainViewController implements Initializable {
 
     }
 
-    private void loadView(String pathName) {
-        try {
-            URL fxmlLocation = getClass().getResource(pathName);
-            if (fxmlLocation == null) {
-                throw new IOException("FXML file not found at specified path.");
-            }
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            VBox newVBox = loader.load();
-
-            Scene principalScene = Main.getPrincipalScene();
-            VBox mainVbox = (VBox) ((ScrollPane) principalScene.getRoot()).getContent();
-
-            Node menu = mainVbox.getChildren().get(0);
-            mainVbox.getChildren().clear();
-            mainVbox.getChildren().add(menu);
-            mainVbox.getChildren().addAll(newVBox.getChildren());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alerts.showAlert("IO Exception", "Error ao Carregar a Pagina", e.getMessage(), Alert.AlertType.ERROR);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alerts.showAlert("Exception", "Erro Inesperado", e.getMessage(), Alert.AlertType.ERROR);
-        }
-    }
-
-    private void loadView2(String pathName) {
+    private synchronized <T>void loadView(String pathName, Consumer<T> initializingAction) {
         try {
             URL fxmlLocation = getClass().getResource(pathName);
             if (fxmlLocation == null) {
@@ -98,9 +81,8 @@ public class MainViewController implements Initializable {
             mainVbox.getChildren().add(menu);
             mainVbox.getChildren().addAll(newVBox.getChildren());
 
-            DoacaoNListaController controller = loader.getController();
-            controller.setDoacaoNormalService(new DoacaoNormalService());
-            controller.updateTableView();
+            T controller = loader.getController();
+            initializingAction.accept(controller);
         } catch (IOException e) {
             e.printStackTrace();
             Alerts.showAlert("IO Exception", "Error ao Carregar a Pagina", e.getMessage(), Alert.AlertType.ERROR);
