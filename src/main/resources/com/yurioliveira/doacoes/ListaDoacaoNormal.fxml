@@ -25,11 +25,10 @@
     <ScrollPane fx:id="scrollPane" prefHeight="303.0" prefWidth="530.0">
         <TableView fx:id="tableViewDoacoes" prefHeight="303.0" prefWidth="530.0">
             <columns>
-                <TableColumn fx:id="tableColumnId" prefWidth="51.0" text="ID" />
-                <TableColumn fx:id="tableColumnTipo" prefWidth="103.0" text="TIPO" />
-                <TableColumn fx:id="tableColumnQtd" prefWidth="63.0" text="QTD" />
-                <TableColumn fx:id="tableColumnIdDoador" text="ID_DOADOR" />
-                <TableColumn fx:id="tableColumnDataDoacao" prefWidth="110.0" text="DATA" />
+                <TableColumn fx:id="tableColumnId" prefWidth="51.0" text="id" />
+                <TableColumn fx:id="tableColumnTipo" prefWidth="103.0" text="tipo" />
+                <TableColumn fx:id="tableColumnQtd" prefWidth="63.0" text="quantidade" />
+                <TableColumn fx:id="tableColumnDataDoacao" prefWidth="110.0" text="data" />
             </columns>
         </TableView>
     </ScrollPane>
