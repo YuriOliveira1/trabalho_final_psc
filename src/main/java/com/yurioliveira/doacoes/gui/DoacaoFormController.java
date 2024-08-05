@@ -1,6 +1,7 @@
 package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.gui.util.Constraints;
+import com.yurioliveira.doacoes.model.entities.Doacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,6 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DoacaoFormController implements Initializable {
+
+    private Doacao entity;
 
     @FXML
     private TextField txtIdDoador;
@@ -39,6 +42,10 @@ public class DoacaoFormController implements Initializable {
     @FXML
     private Button btCancelar;
 
+    public void setDoacao(Doacao entity) {
+        this.entity = entity;
+    }
+
     @FXML
     public void onBtSalvarAction(){
         System.out.println("Salvar funcionadno");
@@ -60,5 +67,14 @@ public class DoacaoFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
         Constraints.setTextFieldMaxLength(txtTipoDoacao, 30);
         Constraints.setTextFieldInteger(txtQuantidadeDoacao);
+    }
+
+    public void updateDoacaoForm(){
+        if (entity == null){
+            throw new IllegalStateException();
+        }
+        txtIdDoacao.setText(String.valueOf(entity.getId()));
+        txtTipoDoacao.setText(entity.getTipo());
+        txtQuantidadeDoacao.setText(String.valueOf(entity.getQuantidade()));
     }
 }

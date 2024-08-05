@@ -57,10 +57,13 @@ public class DoacaoNListaController implements Initializable {
 
     private ObservableList<Doacao> obsList;
 
+
+    //TODO: Injetar o objeto Doador.
     @FXML
     public void onBtnRegistrarAction(ActionEvent event) {
         Stage parent = Utils.currentStage(event);
-        createDoacaoForm(parent);
+        Doacao doacao = new Doacao();
+        createDoacaoForm(doacao, parent);
     }
 
     public DoacaoNListaController() {
@@ -102,11 +105,15 @@ public class DoacaoNListaController implements Initializable {
         tableViewDoacoes.setItems(obsList);
     }
 
-    private void createDoacaoForm(Stage parentStage) {
+    private void createDoacaoForm(Doacao doacao, Stage parentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoForm.fxml"));
             Pane pane = loader.load();
             System.out.println("Pane loaded successfully");
+
+            DoacaoFormController controller = loader.getController();
+            controller.setDoacao(doacao);
+            controller.updateDoacaoForm();
 
             Stage dialogStage = new Stage();
             System.out.println("Stage loaded successfully");
