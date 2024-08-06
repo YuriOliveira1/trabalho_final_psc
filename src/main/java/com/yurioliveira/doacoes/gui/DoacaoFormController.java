@@ -31,7 +31,7 @@ public class DoacaoFormController implements Initializable{
 
     private DoacaoNormalService service;
 
-    private DoadorService doadorService = new DoadorService();
+    private DoadorService doadorService;
 
     private List<DataChangeListener> dataChangeListenerList = new ArrayList<>();
 
@@ -78,6 +78,10 @@ public class DoacaoFormController implements Initializable{
         this.entityDoador = entityDoador;
     }
 
+    public void setDoadorService(DoadorService serviceDoador) {
+        this.doadorService = serviceDoador;
+    }
+
     @FXML
     public void onBtSalvarAction(ActionEvent event){
         Doacao doacao = createAndSaveDoacao();
@@ -89,6 +93,24 @@ public class DoacaoFormController implements Initializable{
             Alerts.showAlert("Erro ao Salvar Doação", null, e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
+    @FXML
+    public void onBtCancelarAction(ActionEvent event){
+        Utils.currentStage(event).close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializaNodes();
+    }
+
+    private void initializaNodes(){
+        Constraints.setTextFieldMaxLength(txtApelidoDoador, 20);
+        Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
+        Constraints.setTextFieldMaxLength(txtTipoDoacao, 30);
+        Constraints.setTextFieldInteger(txtQuantidadeDoacao);
+    }
+
 
     private void notifyDataChangeListeners() throws IllegalAccessException {
         for (DataChangeListener dataChangeListener : dataChangeListenerList) {
@@ -109,63 +131,51 @@ public class DoacaoFormController implements Initializable{
         return entityDoacao;
     }
 
-    private Doador getFormDoador(){
+    private Doador getFormDoador() {
         Doador doador = new Doador();
-
-        doador.setId(Utils.tryParseToInt(txtIdDoador.getText()));
-        doador.setApelido(txtApelidoDoador.getText());
-        doador.setContato(txtContatoDoador.getText());
-
+        try {
+            doador.setId(Utils.tryParseToInt(txtIdDoador.getText()));
+            doador.setApelido(txtApelidoDoador.getText());
+            doador.setContato(txtContatoDoador.getText());
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Erro de Formato", "ID inválido", "O ID do doador deve ser um número inteiro.", Alert.AlertType.ERROR);
+        }
         return doador;
+    }
+
+    public void updateDoadorForm() {
+        if (entityDoador == null) {
+            throw new IllegalStateException("Doador não foi inicializado");
+        }
+        txtIdDoador.setText(String.valueOf(entityDoador.getId()));
+        txtApelidoDoador.setText(entityDoador.getApelido());
+        txtContatoDoador.setText(entityDoador.getContato());
     }
 
     private Doacao getFormDoacao() {
         Doador doador = getFormDoador();
-
         Doacao entity = new Doacao();
 
-        entity.setId(Utils.tryParseToInt(txtIdDoacao.getId()));
-        entity.setTipo(txtTipoDoacao.getText());
-        entity.setQuantidade(Utils.tryParseToInt(txtQuantidadeDoacao.getText()));
-        entity.setDoador(doador);
-        entity.setData(new Date());
+        try {
+            entity.setId(Utils.tryParseToInt(txtIdDoacao.getText()));
+            entity.setTipo(txtTipoDoacao.getText());
+            entity.setQuantidade(Utils.tryParseToInt(txtQuantidadeDoacao.getText()));
+            entity.setDoador(doador);
+            entity.setData(new Date());
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Erro de Formato", "Dados Inválidos", "Verifique se os campos de ID e quantidade estão preenchidos corretamente.", Alert.AlertType.ERROR);
+        }
 
         return entity;
     }
 
-    @FXML
-    public void onBtCancelarAction(ActionEvent event){
-        Utils.currentStage(event).close();
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializaNodes();
-    }
-
-    private void initializaNodes(){
-        Constraints.setTextFieldMaxLength(txtApelidoDoador, 20);
-        Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
-        Constraints.setTextFieldMaxLength(txtTipoDoacao, 30);
-        Constraints.setTextFieldInteger(txtQuantidadeDoacao);
-    }
-
-    public void updateDoacaoForm(){
-        if (entityDoacao == null){
-            throw new IllegalStateException();
+    public void updateDoacaoForm() {
+        if (entityDoacao == null) {
+            throw new IllegalStateException("O objeto Doacao não foi inicializado.");
         }
         txtIdDoacao.setText(String.valueOf(entityDoacao.getId()));
         txtTipoDoacao.setText(entityDoacao.getTipo());
         txtQuantidadeDoacao.setText(String.valueOf(entityDoacao.getQuantidade()));
     }
 
-    public void updateDoadorForm(){
-        if (entityDoador == null){
-            throw new IllegalStateException();
-        }
-        txtIdDoador.setText(String.valueOf(entityDoador.getId()));
-        txtApelidoDoador.setText(entityDoador.getApelido());
-        txtContatoDoador.setText(entityDoador.getContato());
-    }
 }

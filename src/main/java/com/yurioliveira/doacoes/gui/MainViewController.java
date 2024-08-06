@@ -3,6 +3,7 @@ package com.yurioliveira.doacoes.gui;
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
+import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +36,12 @@ public class MainViewController implements Initializable {
     @FXML
     public void onMenuItemDoacaoNormalAction() {
         loadView("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml", (DoacaoNListaController controller) -> {
-            controller.setDoacaoNormalService(new DoacaoNormalService());
+            DoacaoNormalService doacaoNormalService = new DoacaoNormalService();
+            DoadorService doadorService = new DoadorService();
+
+            controller.setDoacaoNormalService(doacaoNormalService);
+            controller.setDoadorService(doadorService);
+
             try {
                 controller.updateTableView();
             } catch (IllegalAccessException e) {

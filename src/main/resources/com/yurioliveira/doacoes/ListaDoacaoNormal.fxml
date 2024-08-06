@@ -29,6 +29,7 @@
                 <TableColumn fx:id="tableColumnTipo" prefWidth="103.0" text="tipo" />
                 <TableColumn fx:id="tableColumnQtd" prefWidth="63.0" text="quantidade" />
                 <TableColumn fx:id="tableColumnDataDoacao" prefWidth="110.0" text="data" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" />
             </columns>
         </TableView>
     </ScrollPane>

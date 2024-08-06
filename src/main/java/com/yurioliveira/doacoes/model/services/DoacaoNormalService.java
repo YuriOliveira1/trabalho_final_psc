@@ -15,6 +15,10 @@ public class DoacaoNormalService {
         return doacaoDAO.findAll();
     }
 
+    public Doacao findById(int id){
+        return doacaoDAO.findById(id);
+    }
+
     public void saveOrUpdate(Doacao doacao){
         if (doacao.getId() == null){
             doacaoDAO.insert(doacao);

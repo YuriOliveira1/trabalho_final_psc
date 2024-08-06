@@ -7,6 +7,8 @@ import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.entities.Doador;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
+import com.yurioliveira.doacoes.model.services.DoadorService;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,13 +30,15 @@ import java.util.ResourceBundle;
 
 public class DoacaoNListaController implements Initializable, DataChangeListener {
 
+    private DoadorService doadorService;
+
+    private DoacaoNormalService doacaoNormalService;
+
     @FXML
     public ToolBar toolBar;
 
     @FXML
     public Label labelRegistro;
-
-    private DoacaoNormalService doacaoNormalService;
 
     @FXML
     private TableView<Doacao> tableViewDoacoes;
@@ -52,6 +56,9 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
     private TableColumn<Doacao, Date> tableColumnDataDoacao;
 
     @FXML
+    private TableColumn<Doacao, Doacao> tableColumnEDIT;
+
+    @FXML
     private Button btRegistrar;
 
     @FXML
@@ -59,20 +66,24 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
 
     private ObservableList<Doacao> obsList;
 
-    //TODO: Injetar o objeto Doador.
+
+    public DoacaoNListaController() {
+    }
+
     @FXML
     public void onBtnRegistrarAction(ActionEvent event) {
         Stage parent = Utils.currentStage(event);
         Doacao doacao = new Doacao();
         Doador doador = new Doador();
-        createDoacaoForm(doador, doacao, parent);
-    }
-
-    public DoacaoNListaController() {
+        createDoacaoForm(doacao, parent);
     }
 
     public void setDoacaoNormalService(DoacaoNormalService doacaoNormalService) {
         this.doacaoNormalService = doacaoNormalService;
+    }
+
+    public void setDoadorService(DoadorService doadorService) {
+        this.doadorService = doadorService;
     }
 
     @Override
@@ -105,21 +116,25 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
         List<Doacao> list = doacaoNormalService.findAll();
         obsList = FXCollections.observableArrayList(list);
         tableViewDoacoes.setItems(obsList);
+        initEditButtons();
     }
 
-    private void createDoacaoForm(Doador doador, Doacao doacao, Stage parentStage) {
+    private void createDoacaoForm(Doacao doacao, Stage parentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoForm.fxml"));
             Pane pane = loader.load();
+            Doador doador = new Doador();
 
             DoacaoFormController controller = loader.getController();
+            controller.setDoacaoService(doacaoNormalService);
+            controller.setDoadorService(doadorService);
 
-            controller.setDoacao(doacao);
 
             controller.setDoador(doador);
             controller.updateDoadorForm();
 
-            controller.setDoacaoService(doacaoNormalService);
+            controller.setDoacao(doacao);
+
             controller.subscribeDataChangeListener(this);
             controller.updateDoacaoForm();
 
@@ -140,5 +155,64 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
     @Override
     public void onDataChanged() throws IllegalAccessException {
         updateTableView();
+    }
+
+    private void initEditButtons() {
+        tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tableColumnEDIT.setCellFactory(param -> new TableCell<Doacao, Doacao>() {
+            private final Button button = new Button("edit");
+
+            @Override
+            protected void updateItem(Doacao obj, boolean empty) {
+                super.updateItem(obj, empty);
+                if (empty || obj == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                setGraphic(button);
+
+                button.setOnAction(
+                        event -> updateDoacaoForm(obj, Utils.currentStage(event)));
+            }
+        });
+    }
+
+    private void updateDoacaoForm(Doacao doacao, Stage parentStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoForm.fxml"));
+            Pane pane = loader.load();
+
+            DoacaoFormController controller = loader.getController();
+            controller.setDoacaoService(doacaoNormalService);
+            controller.setDoadorService(doadorService);
+
+            if (doacao == null) {
+                doacao = new Doacao();
+                Doador doador = new Doador();
+                doacao.setDoador(doador);
+                controller.setDoacao(doacao);
+                controller.setDoador(doador);
+            } else {
+                Doador doador = doadorService.findById(doacao.getDoador().getId());
+                doacao.setDoador(doador);
+                controller.setDoacao(doacao);
+                controller.setDoador(doador);
+            }
+
+            controller.updateDoacaoForm();
+            controller.updateDoadorForm();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
     }
 }

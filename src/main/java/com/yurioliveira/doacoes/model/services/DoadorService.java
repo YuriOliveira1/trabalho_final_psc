@@ -14,6 +14,10 @@ public class DoadorService {
         return doadorDAO.findAll();
     }
 
+    public Doador findById(int id) {
+        return doadorDAO.findById(id);
+    }
+
     public void saveOrUpdate(Doador doador) {
         if (doador.getId() == null) {
             doadorDAO.insert(doador);
