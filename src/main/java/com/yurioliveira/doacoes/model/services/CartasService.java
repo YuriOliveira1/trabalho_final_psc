@@ -13,4 +13,8 @@ public class CartasService {
     public List<CartaDeApoio> findAll(){
         return daoCartaDeApoio.findAll();
     }
+
+    public void insert(CartaDeApoio cartaDeApoio){
+        daoCartaDeApoio.insert(cartaDeApoio);
+    }
 }
