@@ -1,12 +1,12 @@
 package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
+import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.entities.Doador;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
-import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DoacaoNListaController implements Initializable {
+public class DoacaoNListaController implements Initializable, DataChangeListener {
 
     @FXML
     public ToolBar toolBar;
@@ -120,6 +120,7 @@ public class DoacaoNListaController implements Initializable {
             controller.updateDoadorForm();
 
             controller.setDoacaoService(doacaoNormalService);
+            controller.subscribeDataChangeListener(this);
             controller.updateDoacaoForm();
 
             Stage dialogStage = new Stage();
@@ -134,5 +135,10 @@ public class DoacaoNListaController implements Initializable {
             Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDataChanged() throws IllegalAccessException {
+        updateTableView();
     }
 }

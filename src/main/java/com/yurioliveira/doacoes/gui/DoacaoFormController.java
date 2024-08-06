@@ -1,6 +1,7 @@
 package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.database.DbException;
+import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Constraints;
 import com.yurioliveira.doacoes.gui.util.Utils;
@@ -17,10 +18,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class DoacaoFormController implements Initializable {
+public class DoacaoFormController implements Initializable{
 
     private Doacao entityDoacao;
 
@@ -29,6 +32,8 @@ public class DoacaoFormController implements Initializable {
     private DoacaoNormalService service;
 
     private DoadorService doadorService = new DoadorService();
+
+    private List<DataChangeListener> dataChangeListenerList = new ArrayList<>();
 
     @FXML
     private TextField txtIdDoador;
@@ -57,6 +62,10 @@ public class DoacaoFormController implements Initializable {
     @FXML
     private Button btCancelar;
 
+    public void subscribeDataChangeListener(DataChangeListener dataChangeListener) {
+        dataChangeListenerList.add(dataChangeListener);
+    }
+
     public void setDoacaoService(DoacaoNormalService service) {
         this.service = service;
     }
@@ -75,8 +84,15 @@ public class DoacaoFormController implements Initializable {
         try {
             service.saveOrUpdate(doacao);
             Utils.currentStage(event).close();
-        } catch (DbException e) {
+            notifyDataChangeListeners();
+        } catch (DbException | IllegalAccessException e) {
             Alerts.showAlert("Erro ao Salvar Doação", null, e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void notifyDataChangeListeners() throws IllegalAccessException {
+        for (DataChangeListener dataChangeListener : dataChangeListenerList) {
+            dataChangeListener.onDataChanged();
         }
     }
 
