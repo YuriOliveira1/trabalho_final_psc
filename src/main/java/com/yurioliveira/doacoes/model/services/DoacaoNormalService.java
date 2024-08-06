@@ -3,7 +3,6 @@ package com.yurioliveira.doacoes.model.services;
 import com.yurioliveira.doacoes.model.dao.DAO;
 import com.yurioliveira.doacoes.model.dao.impl.DaoFactory;
 import com.yurioliveira.doacoes.model.entities.Doacao;
-import com.yurioliveira.doacoes.model.entities.Doador;
 
 import java.util.List;
 
@@ -25,5 +24,9 @@ public class DoacaoNormalService {
         } else {
             doacaoDAO.update(doacao);
         }
+    }
+
+    public void delete(Doacao doacao){
+        doacaoDAO.deleteById(doacao.getId());
     }
 }

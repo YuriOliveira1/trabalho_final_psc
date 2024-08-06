@@ -1,6 +1,7 @@
 package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
+import com.yurioliveira.doacoes.database.DbException;
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
@@ -26,13 +27,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DoacaoNListaController implements Initializable, DataChangeListener {
-
-    private DoadorService doadorService;
-
-    private DoacaoNormalService doacaoNormalService;
 
     @FXML
     public ToolBar toolBar;
@@ -59,12 +57,19 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
     private TableColumn<Doacao, Doacao> tableColumnEDIT;
 
     @FXML
+    private TableColumn<Doacao, Doacao> tableColumnDELETE;
+
+    @FXML
     private Button btRegistrar;
 
     @FXML
     private ScrollPane scrollPane;
 
     private ObservableList<Doacao> obsList;
+
+    private DoadorService doadorService;
+
+    private DoacaoNormalService doacaoNormalService;
 
 
     public DoacaoNListaController() {
@@ -117,6 +122,7 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
         obsList = FXCollections.observableArrayList(list);
         tableViewDoacoes.setItems(obsList);
         initEditButtons();
+        initRemoveButtons();
     }
 
     private void createDoacaoForm(Doacao doacao, Stage parentStage) {
@@ -213,6 +219,39 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
+        }
+    }
+
+    private void initRemoveButtons(){
+        tableColumnDELETE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tableColumnDELETE.setCellFactory(param -> new TableCell<Doacao, Doacao>() {
+            private final Button button = new Button("delete");
+
+            @Override
+            protected void updateItem(Doacao obj, boolean empty) {
+                super.updateItem(obj, empty);
+
+                if (empty || obj == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                setGraphic(button);
+                button.setOnAction(event -> removeEntity(obj));
+            }
+        });
+    }
+
+    private void removeEntity(Doacao obj) {
+        Optional<ButtonType> result = Alerts.showAlertConfirmation("Confirmação", "Certeza ao deletar este item?", null);
+
+        if (result.get() == ButtonType.OK) {
+            try {
+                doacaoNormalService.delete(obj);
+                updateTableView();
+            } catch (IllegalAccessException e ) {
+                Alerts.showAlert("Error ao remover objeto", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
         }
     }
 }
