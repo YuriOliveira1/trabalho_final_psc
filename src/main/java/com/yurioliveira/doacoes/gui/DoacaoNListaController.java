@@ -4,7 +4,9 @@ import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.Doacao;
+import com.yurioliveira.doacoes.model.entities.Doador;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
+import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,13 +59,13 @@ public class DoacaoNListaController implements Initializable {
 
     private ObservableList<Doacao> obsList;
 
-
     //TODO: Injetar o objeto Doador.
     @FXML
     public void onBtnRegistrarAction(ActionEvent event) {
         Stage parent = Utils.currentStage(event);
         Doacao doacao = new Doacao();
-        createDoacaoForm(doacao, parent);
+        Doador doador = new Doador();
+        createDoacaoForm(doador, doacao, parent);
     }
 
     public DoacaoNListaController() {
@@ -105,18 +107,22 @@ public class DoacaoNListaController implements Initializable {
         tableViewDoacoes.setItems(obsList);
     }
 
-    private void createDoacaoForm(Doacao doacao, Stage parentStage) {
+    private void createDoacaoForm(Doador doador, Doacao doacao, Stage parentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoForm.fxml"));
             Pane pane = loader.load();
-            System.out.println("Pane loaded successfully");
 
             DoacaoFormController controller = loader.getController();
+
             controller.setDoacao(doacao);
+
+            controller.setDoador(doador);
+            controller.updateDoadorForm();
+
+            controller.setDoacaoService(doacaoNormalService);
             controller.updateDoacaoForm();
 
             Stage dialogStage = new Stage();
-            System.out.println("Stage loaded successfully");
 
             dialogStage.setTitle("Cadastro de Doacao");
             dialogStage.setScene(new Scene(pane));
