@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.CartasFormController">
    <children>
       <Label fx:id="label" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="44.0" layoutY="38.0" text="Registro de Carta de Apoio">
          <font>
@@ -41,7 +41,7 @@
             </Label>
             <TextArea fx:id="textFieldTexto" prefHeight="131.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="textFieldId" editable="false" GridPane.columnIndex="1" />
-            <TextField onAction="#textFieldNomeEscritor" prefHeight="9.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldNomeEscritor" prefHeight="9.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox layoutX="144.0" layoutY="455.0" prefHeight="35.0" prefWidth="200.0" spacing="15.0">

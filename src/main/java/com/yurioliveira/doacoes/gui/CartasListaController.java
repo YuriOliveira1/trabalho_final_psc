@@ -2,21 +2,29 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
+import com.yurioliveira.doacoes.gui.util.Alerts;
+import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.model.services.CartasService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CartasListaController implements Initializable {
+public class CartasListaController implements Initializable, DataChangeListener {
 
     @FXML
     public ToolBar toolBar;
@@ -77,7 +85,38 @@ public class CartasListaController implements Initializable {
 
     @FXML
     private void onBtRegistrarAction(ActionEvent actionEvent) {
-        System.out.println("Teste");
+        Stage parent = Utils.currentStage(actionEvent);
+        CartaDeApoio carta = new CartaDeApoio();
+        createCartasForm(carta, parent);
     }
 
+    private void createCartasForm(CartaDeApoio cartaDeApoio, Stage parentStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/CartasForm.fxml"));
+            Pane pane = loader.load();
+
+            CartasFormController controller = loader.getController();
+
+            controller.setCartasService(cartasService);
+
+            controller.updateCartasForm();
+
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onDataChanged() throws IllegalAccessException {
+
+    }
 }
