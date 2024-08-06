@@ -18,6 +18,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -161,7 +164,8 @@ public class DoacaoFormController implements Initializable{
             entity.setTipo(txtTipoDoacao.getText());
             entity.setQuantidade(Utils.tryParseToInt(txtQuantidadeDoacao.getText()));
             entity.setDoador(doador);
-            entity.setData(new Date());
+            Instant instant = Instant.from(txtDataDoacao.getValue().atStartOfDay(ZoneId.systemDefault()));
+            entity.setData(Date.from(instant));
         } catch (NumberFormatException e) {
             Alerts.showAlert("Erro de Formato", "Dados Inválidos", "Verifique se os campos de ID e quantidade estão preenchidos corretamente.", Alert.AlertType.ERROR);
         }
@@ -176,6 +180,14 @@ public class DoacaoFormController implements Initializable{
         txtIdDoacao.setText(String.valueOf(entityDoacao.getId()));
         txtTipoDoacao.setText(entityDoacao.getTipo());
         txtQuantidadeDoacao.setText(String.valueOf(entityDoacao.getQuantidade()));
-    }
 
+        if (entityDoacao.getData() != null) {
+            LocalDate localDate = entityDoacao.getData().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            txtDataDoacao.setValue(localDate);
+        } else {
+            txtDataDoacao.setValue(null);
+        }
+    }
 }
