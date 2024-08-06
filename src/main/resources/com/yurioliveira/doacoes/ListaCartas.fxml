@@ -9,28 +9,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.CartasListaController">
-   <children>
-      <Label text="Registro de Cartas de Apoio:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="8.0" left="20.0" top="20.0" />
-         </padding>
-      </Label>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <items>
-          <Button mnemonicParsing="false" text="Registrar" />
-        </items>
-      </ToolBar>
-      <TableView prefHeight="318.0" prefWidth="600.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="id" />
-          <TableColumn prefWidth="134.0" text="nomeEscritor" />
-            <TableColumn prefWidth="178.0" text="Carta de Apoio" />
-        </columns>
-      </TableView>
-   </children>
+    <children>
+        <Label fx:id="labelRegistro" text="Registro de Cartas de Apoio:">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <padding>
+                <Insets bottom="8.0" left="20.0" top="20.0" />
+            </padding>
+        </Label>
+        <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0">
+            <items>
+                <Button fx:id="btRegistrar" mnemonicParsing="false" text="Registrar" onAction="#onBtRegistrarAction"/>
+            </items>
+        </ToolBar>
+        <TableView fx:id="tableView" prefHeight="318.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="tableColumnNomeEscritor" prefWidth="134.0" text="Nome do Escritor" />
+                <TableColumn fx:id="tableColumnCarta" prefWidth="178.0" text="Carta de Apoio" />
+            </columns>
+        </TableView>
+    </children>
 </VBox>

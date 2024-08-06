@@ -110,7 +110,7 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
             tableColumnDataDoacao.setCellValueFactory(new PropertyValueFactory<>("data"));
         }
 
-        Stage stage = (Stage) Main.getPrincipalScene().getWindow();
+        Main.getPrincipalScene().getWindow();
     }
 
     public void updateTableView() throws IllegalAccessException {

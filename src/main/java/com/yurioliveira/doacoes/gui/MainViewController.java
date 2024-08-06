@@ -53,16 +53,17 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoDinheiroAction() {
-        loadView("/com/yurioliveira/doacoes/ListaCartas.fxml", (CartasListaController controller) -> {
-            CartasService cartasService = new CartasService();
-
-            controller.set
-        }
+        System.out.println("onMenuItemDoacaoDinheiroAction");
     }
 
     @FXML
     public void onMenuItemDoacaoCartaApoioAction() {
-        System.out.println("onMenuItemDoacaoCartaApoioAction");
+        loadView("/com/yurioliveira/doacoes/ListaCartas.fxml", (CartasListaController controller) -> {
+            CartasService cartasService = new CartasService();
+            controller.setCartaService(cartasService);
+
+            controller.updateTableView();
+        });
     }
 
     @FXML
