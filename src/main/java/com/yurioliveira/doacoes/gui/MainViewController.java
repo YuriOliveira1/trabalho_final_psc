@@ -2,6 +2,7 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
+import com.yurioliveira.doacoes.model.services.CartasService;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
 import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.fxml.FXML;
@@ -52,7 +53,11 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoDinheiroAction() {
-        System.out.println("onMenuItemDoacaoDinheiroAction");
+        loadView("/com/yurioliveira/doacoes/ListaCartas.fxml", (CartasListaController controller) -> {
+            CartasService cartasService = new CartasService();
+
+            controller.set
+        }
     }
 
     @FXML
