@@ -2,6 +2,7 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
+import com.yurioliveira.doacoes.gui.util.Constraints;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.model.services.CartasService;
@@ -88,7 +89,13 @@ public class CartasFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeNodes();
+    }
 
+    public void initializeNodes(){
+        Constraints.setTextFieldInteger(textFieldId);
+        Constraints.setTextFieldMaxLength(textFieldNomeEscritor, 20);
+        Constraints.setTextAreaMaxLength(textFieldTexto, 255);
     }
 
     public void updateCartasForm() {
