@@ -6,6 +6,7 @@ import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.model.services.CartasService;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,6 +47,9 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
     @FXML
     private Button btRegistrar;
+
+    @FXML
+    private TableColumn<CartaDeApoio, CartaDeApoio> tableColumnEDIT;
 
     private ObservableList<CartaDeApoio> observableList;
 
@@ -121,5 +125,50 @@ public class CartasListaController implements Initializable, DataChangeListener 
     @Override
     public void onDataChanged() throws IllegalAccessException {
         updateTableView();
+    }
+
+    private void initEditButtons() {
+        tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tableColumnEDIT.setCellFactory(param -> new TableCell<CartaDeApoio, CartaDeApoio>() {
+            private final Button button = new Button("edit");
+            @Override
+            protected void updateItem(CartaDeApoio obj, boolean empty) {
+                super.updateItem(obj, empty);
+                if (obj == null) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(button);
+                button.setOnAction(
+                        event -> createDialogForm(
+                                obj, Utils.currentStage(event)));
+            }
+        });
+    }
+
+    private void createDialogForm(CartaDeApoio obj, Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/CartasForm.fxml"));
+            Pane pane = loader.load();
+
+            CartasFormController controller = loader.getController();
+
+            controller.setCartasService(cartasService);
+
+            controller.subscribeDataChangeListener(this);
+            controller.updateCartasForm();
+
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(stage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
     }
 }
