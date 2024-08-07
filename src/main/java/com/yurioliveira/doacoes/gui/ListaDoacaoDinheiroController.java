@@ -1,5 +1,7 @@
 package com.yurioliveira.doacoes.gui;
 
+import com.yurioliveira.doacoes.Main;
+import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
@@ -17,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ListaDoacaoDinheiroController implements Initializable {
+public class ListaDoacaoDinheiroController implements Initializable, DataChangeListener {
 
     @FXML
     private TableView<DoacaoDinheiro> tableViewDoacoes;
@@ -71,7 +74,7 @@ public class ListaDoacaoDinheiroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        initilizeNodes();
     }
 
     private void createDoacaoDinheiroForm(DoacaoDinheiro doacaoDinheiro, Stage parent) {
@@ -109,6 +112,20 @@ public class ListaDoacaoDinheiroController implements Initializable {
 
 
     private void initilizeNodes() {
+        if (tableColumnId != null) {
+            tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        }
+        if (tableColumnValor != null) {
+            tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        }
+        if (tableColumnNome != null) {
+            tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("nomeConta"));
+        }
+        if (tableColumnData != null) {
+            tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("data"));
+        }
+
+        Main.getPrincipalScene().getWindow();
     }
 
     public void updateTableView() throws IllegalAccessException {
@@ -119,5 +136,10 @@ public class ListaDoacaoDinheiroController implements Initializable {
         List<DoacaoDinheiro> list = doacaoDinheiroService.findAll();
         obsDoacoes = FXCollections.observableArrayList(list);
         tableViewDoacoes.setItems(obsDoacoes);
+    }
+
+    @Override
+    public void onDataChanged() throws IllegalAccessException {
+        updateTableView();
     }
 }
