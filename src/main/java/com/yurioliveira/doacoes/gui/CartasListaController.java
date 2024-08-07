@@ -49,6 +49,8 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
     private ObservableList<CartaDeApoio> observableList;
 
+    private List<DataChangeListener> listeners;
+
     private CartasService cartasService;
 
     public void setCartaService(CartasService service){
@@ -99,6 +101,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
             controller.setCartasService(cartasService);
 
+            controller.subscribeDataChangeListener(this);
             controller.updateCartasForm();
 
             Stage dialogStage = new Stage();
@@ -117,6 +120,6 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
     @Override
     public void onDataChanged() throws IllegalAccessException {
-
+        updateTableView();
     }
 }

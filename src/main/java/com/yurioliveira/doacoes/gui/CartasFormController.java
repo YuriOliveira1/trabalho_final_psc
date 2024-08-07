@@ -1,5 +1,6 @@
 package com.yurioliveira.doacoes.gui;
 
+import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CartasFormController implements Initializable {
@@ -18,6 +21,8 @@ public class CartasFormController implements Initializable {
     private CartasService cartasService;
 
     private CartaDeApoio cartaDeApoio;
+
+    private List<DataChangeListener> listeners = new ArrayList<>();
 
     @FXML
     private AnchorPane anchorPane;
@@ -41,10 +46,19 @@ public class CartasFormController implements Initializable {
     private Button buttonCancelar;
 
     @FXML
-    private void onBtSalvarAction(ActionEvent event) {
+    private void onBtSalvarAction(ActionEvent event) throws IllegalAccessException {
         cartaDeApoio = getFormCarta();
         cartasService.insert(cartaDeApoio);
+        Utils.currentStage(event).close();
+        notifyDataChangeListeners();
     }
+
+
+    @FXML
+    private void onBtCancelarAction(ActionEvent event) {
+        Utils.currentStage(event).close();
+    }
+
 
     private CartaDeApoio getFormCarta() {
         CartaDeApoio carta = new CartaDeApoio();
@@ -58,10 +72,14 @@ public class CartasFormController implements Initializable {
         return carta;
     }
 
+    public void listeners(DataChangeListener dataChangeListener) {
+        listeners.add(dataChangeListener);
+    }
 
-    @FXML
-    private void onBtCancelarAction(ActionEvent event) {
-        Utils.currentStage(event).close();
+    private void notifyDataChangeListeners() throws IllegalAccessException {
+        for (DataChangeListener listener : listeners) {
+            listener.onDataChanged();
+        }
     }
 
     public void setCartasService(CartasService cartasService){
@@ -74,5 +92,10 @@ public class CartasFormController implements Initializable {
     }
 
     public void updateCartasForm() {
+    }
+
+
+    public void subscribeDataChangeListener(DataChangeListener dataChangeListener) {
+        listeners.add(dataChangeListener);
     }
 }
