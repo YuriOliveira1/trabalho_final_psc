@@ -30,7 +30,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
 
             st.setFloat(1, obj.getValor());
             st.setString(2, obj.getNomeConta());
-            st.setInt(3, obj.getDoacao().getId());
+            st.setInt(3, obj.getDoador().getId());
             st.setDate(4, new java.sql.Date(obj.getData().getTime()));
 
             int rowsAffected = st.executeUpdate();
@@ -51,7 +51,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
     }
 
 
-    // Update está com erro com assosiação ao idDoacao -> Vou retirar posteriormente
+    // Update está com erro com associação ao idDoacao -> Vou retirar posteriormente
     @Override
     public void update(DoacaoDinheiro obj) {
         PreparedStatement st = null;
@@ -61,7 +61,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
 
             st.setFloat(1, obj.getValor());
             st.setString(2, obj.getNomeConta());
-            st.setInt(3, 45);
+            st.setInt(3, obj.getDoador().getId());
             st.setDate(4, new java.sql.Date(obj.getData().getTime()));
             st.setInt(5, obj.getId());
             
@@ -101,8 +101,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
 
             if (rs.next()) {
                 Doador doador = instantiateDoador(rs);
-                Doacao doacao = instantiateDoacao(rs, doador);
-                DoacaoDinheiro dd = instatiateDoacaoDinheiro(rs, doacao);
+                DoacaoDinheiro dd = instatiateDoacaoDinheiro(rs, doador);
                 return dd;
             }
         } catch (SQLException e) {
@@ -128,8 +127,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
 
             while (rs.next()) {
                 Doador doador = instantiateDoador(rs);
-                Doacao doacao = instantiateDoacao(rs, doador);
-                DoacaoDinheiro dd = instatiateDoacaoDinheiro(rs, doacao);
+                DoacaoDinheiro dd = instatiateDoacaoDinheiro(rs, doador);
                 list.add(dd);
             }
             return list;
@@ -156,13 +154,13 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
         return doador;
     }
 
-    private DoacaoDinheiro instatiateDoacaoDinheiro(ResultSet rs, Doacao doacao) throws SQLException {
+    private DoacaoDinheiro instatiateDoacaoDinheiro(ResultSet rs, Doador doador) throws SQLException {
         DoacaoDinheiro dd = new DoacaoDinheiro();
 
         dd.setId(rs.getInt("id"));
         dd.setValor(rs.getFloat("valor"));
         dd.setNomeConta(rs.getString("nomeConta"));
-        dd.setDoacao(doacao);
+        dd.setDoador(doador);
         dd.setData(rs.getDate("data"));
 
         return dd;

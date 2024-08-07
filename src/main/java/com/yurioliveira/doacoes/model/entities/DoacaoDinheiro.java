@@ -8,14 +8,14 @@ public class DoacaoDinheiro {
     private float valor;
     private Date data;
     private String nomeConta;
-    private Doacao doacao;
+    private Doador doador;
 
-    public DoacaoDinheiro(Integer id, float valor, Date data, String nomeConta, Doacao doacao) {
+    public DoacaoDinheiro(Integer id, float valor, Date data, String nomeConta, Doador doador) {
         this.id = id;
         this.valor = valor;
         this.data = data;
         this.nomeConta = nomeConta;
-        this.doacao = doacao;
+        this.doador = doador;
     }
 
     public DoacaoDinheiro() {
@@ -84,12 +84,12 @@ public class DoacaoDinheiro {
         this.valor = valor;
     }
 
-    public Doacao getDoacao() {
-        return doacao;
+    public Doador getDoador() {
+        return doador;
     }
 
-    public void setDoacao(Doacao doacao) {
-        this.doacao = doacao;
+    public void setDoador(Doador doador) {
+        this.doador = doador;
     }
 
     @Override
