@@ -49,7 +49,7 @@ public class CartasFormController implements Initializable {
     @FXML
     private void onBtSalvarAction(ActionEvent event) throws IllegalAccessException {
         cartaDeApoio = getFormCarta();
-        cartasService.insert(cartaDeApoio);
+        cartasService.saveOrUpdate(cartaDeApoio);
         Utils.currentStage(event).close();
         notifyDataChangeListeners();
     }
@@ -84,6 +84,11 @@ public class CartasFormController implements Initializable {
         this.cartasService = cartasService;
     }
 
+    public void setCartaDeApoio(CartaDeApoio cartaDeApoio){
+        this.cartaDeApoio = cartaDeApoio;
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeNodes();
@@ -96,7 +101,7 @@ public class CartasFormController implements Initializable {
     }
 
     public void updateCartasForm() {
-        if (cartaDeApoio != null) {
+        if (cartaDeApoio == null) {
             throw new IllegalStateException("Cartas de Apoio não foi inicializado");
         }
         textFieldId.setText(String.valueOf(cartaDeApoio.getIdCarta()));

@@ -64,6 +64,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initalizeNodes();
+        initEditButtons();
     }
 
     private void initalizeNodes() {
@@ -140,13 +141,13 @@ public class CartasListaController implements Initializable, DataChangeListener 
                 }
                 setGraphic(button);
                 button.setOnAction(
-                        event -> createDialogForm(
+                        event -> updateDialogForm(
                                 obj, Utils.currentStage(event)));
             }
         });
     }
 
-    private void createDialogForm(CartaDeApoio obj, Stage stage) {
+    private void updateDialogForm(CartaDeApoio obj, Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/CartasForm.fxml"));
             Pane pane = loader.load();
@@ -155,6 +156,14 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
             controller.setCartasService(cartasService);
 
+            if (obj == null) {
+                obj = new CartaDeApoio();
+                controller.setCartaDeApoio(obj);
+            } else {
+                CartaDeApoio carta = cartasService.findById(obj.getIdCarta());
+                controller.setCartaDeApoio(carta);
+            }
+            
             controller.subscribeDataChangeListener(this);
             controller.updateCartasForm();
 
