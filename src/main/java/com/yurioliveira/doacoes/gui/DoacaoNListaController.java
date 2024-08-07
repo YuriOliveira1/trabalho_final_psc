@@ -32,11 +32,6 @@ import java.util.ResourceBundle;
 
 public class DoacaoNListaController implements Initializable, DataChangeListener {
 
-    @FXML
-    public ToolBar toolBar;
-
-    @FXML
-    public Label labelRegistro;
 
     @FXML
     private TableView<Doacao> tableViewDoacoes;
@@ -62,18 +57,12 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
     @FXML
     private Button btRegistrar;
 
-    @FXML
-    private ScrollPane scrollPane;
-
     private ObservableList<Doacao> obsList;
 
     private DoadorService doadorService;
 
     private DoacaoNormalService doacaoNormalService;
 
-
-    public DoacaoNListaController() {
-    }
 
     @FXML
     public void onBtnRegistrarAction(ActionEvent event) {
