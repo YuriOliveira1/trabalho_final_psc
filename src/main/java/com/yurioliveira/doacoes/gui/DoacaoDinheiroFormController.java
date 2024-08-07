@@ -3,6 +3,7 @@ package com.yurioliveira.doacoes.gui;
 import com.yurioliveira.doacoes.database.DbException;
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
+import com.yurioliveira.doacoes.gui.util.Constraints;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
 import com.yurioliveira.doacoes.model.entities.Doador;
@@ -78,7 +79,14 @@ public class DoacaoDinheiroFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeNodes();
+    }
 
+    private void initializeNodes(){
+        Constraints.setTextFieldFloat(txtValorDoacao);
+        Constraints.setTextFieldMaxLength(txtApelidoDoador, 20);
+        Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
+        Constraints.setTextFieldMaxLength(txtNomeConta, 15);
     }
 
     private DoacaoDinheiro createAndSaveDoacao() {
