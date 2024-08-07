@@ -18,4 +18,12 @@ public class Utils {
             return null;
         }
     }
+
+    public static Float tryParseToFloat(String str) {
+        try {
+            return Float.parseFloat(str);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 }
