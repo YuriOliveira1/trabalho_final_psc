@@ -15,22 +15,13 @@
                 <MenuItem fx:id="menuItemDoacaoCartaApoio" mnemonicParsing="false" onAction="#onMenuItemDoacaoCartaApoioAction" text="Carta de Apoio" />
             </Menu>
             <Menu mnemonicParsing="false" text="Buscar">
-                <MenuItem mnemonicParsing="false" text="Buscar Doação Normal" />
-                <MenuItem mnemonicParsing="false" text="Buscar Doação em Dinheiro" />
-                <MenuItem mnemonicParsing="false" text="Buscar Cartas" />
                 <MenuItem mnemonicParsing="false" text="Buscar Doador" />
             </Menu>
             <Menu mnemonicParsing="false" text="Geração de Relatório">
                 <MenuItem mnemonicParsing="false" text="Gerar Relatório" />
             </Menu>
-            <Menu mnemonicParsing="false" text="Deletar">
-                <MenuItem mnemonicParsing="false" text="Deletar Doação Normal" />
-                <MenuItem mnemonicParsing="false" text="Deletar Doação Em Dinheiro" />
-                <MenuItem mnemonicParsing="false" text="Deletar Carta" />
-                <MenuItem mnemonicParsing="false" text="Deletar Doador" />
-            </Menu>
             <Menu mnemonicParsing="false" text="Sobre">
-                <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre"/>
+                <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />
             </Menu>
         </MenuBar>
     </VBox>

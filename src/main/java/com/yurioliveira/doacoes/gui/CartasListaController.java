@@ -214,6 +214,6 @@ public class CartasListaController implements Initializable, DataChangeListener 
         if (result.get() == ButtonType.OK) {
             cartasService.remove(obj);
             updateTableView();
-        } 
+        }
     }
 }

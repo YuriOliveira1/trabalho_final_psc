@@ -30,7 +30,7 @@
                 <TableColumn fx:id="tableColumnQtd" prefWidth="87.0" text="quantidade" />
                 <TableColumn fx:id="tableColumnDataDoacao" prefWidth="103.0" text="data" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="83.0" />
-            <TableColumn fx:id="tableColumnDELETE" prefWidth="100.0" />
+            <TableColumn fx:id="tableColumnDELETE" prefWidth="104.0" />
             </columns>
         </TableView>
     </ScrollPane>
