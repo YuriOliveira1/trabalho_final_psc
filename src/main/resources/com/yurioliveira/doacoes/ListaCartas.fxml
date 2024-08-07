@@ -30,7 +30,7 @@
                 <TableColumn fx:id="tableColumnNomeEscritor" prefWidth="134.0" text="Nome do Escritor" />
                 <TableColumn fx:id="tableColumnCarta" prefWidth="178.0" text="Carta de Apoio" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="77.0" />
-            <TableColumn fx:id="tableColumnCarta11" prefWidth="164.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="164.0" />
             </columns>
         </TableView>
     </children>

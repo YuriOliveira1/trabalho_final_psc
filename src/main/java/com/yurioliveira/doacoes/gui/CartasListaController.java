@@ -5,6 +5,7 @@ import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
+import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.services.CartasService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CartasListaController implements Initializable, DataChangeListener {
@@ -51,20 +53,22 @@ public class CartasListaController implements Initializable, DataChangeListener 
     @FXML
     private TableColumn<CartaDeApoio, CartaDeApoio> tableColumnEDIT;
 
+    @FXML
+    private TableColumn<CartaDeApoio, CartaDeApoio> tableColumnREMOVE;
+
     private ObservableList<CartaDeApoio> observableList;
 
     private List<DataChangeListener> listeners;
 
     private CartasService cartasService;
 
-    public void setCartaService(CartasService service){
+    public void setCartaService(CartasService service) {
         this.cartasService = service;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initalizeNodes();
-        initEditButtons();
     }
 
     private void initalizeNodes() {
@@ -81,13 +85,15 @@ public class CartasListaController implements Initializable, DataChangeListener 
         Main.getPrincipalScene().getWindow();
     }
 
-    public void updateTableView(){
-        if (cartasService == null){
+    public void updateTableView() {
+        if (cartasService == null) {
             throw new IllegalStateException("Erro com o Serviço");
         }
         List<CartaDeApoio> listCartas = cartasService.findAll();
         observableList = FXCollections.observableArrayList(listCartas);
         tableView.setItems(observableList);
+        initEditButtons();
+        initRemoveButtons();
     }
 
     @FXML
@@ -132,6 +138,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
         tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         tableColumnEDIT.setCellFactory(param -> new TableCell<CartaDeApoio, CartaDeApoio>() {
             private final Button button = new Button("edit");
+
             @Override
             protected void updateItem(CartaDeApoio obj, boolean empty) {
                 super.updateItem(obj, empty);
@@ -163,7 +170,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
                 CartaDeApoio carta = cartasService.findById(obj.getIdCarta());
                 controller.setCartaDeApoio(carta);
             }
-            
+
             controller.subscribeDataChangeListener(this);
             controller.updateCartasForm();
 
@@ -179,5 +186,34 @@ public class CartasListaController implements Initializable, DataChangeListener 
             Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
+    }
+
+
+    private void initRemoveButtons() {
+        tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        tableColumnREMOVE.setCellFactory(param -> new TableCell<CartaDeApoio, CartaDeApoio>() {
+            private final Button button = new Button("remove");
+
+            @Override
+            protected void updateItem(CartaDeApoio obj, boolean empty) {
+                super.updateItem(obj, empty);
+                if (obj == null) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(button);
+                button.setOnAction(event -> removeEntity(obj));
+            }
+        });
+    }
+
+
+    private void removeEntity(CartaDeApoio obj) {
+        Optional<ButtonType> result = Alerts.showAlertConfirmation("Confirmação", "Certeza ao deletar este item?", null);
+
+        if (result.get() == ButtonType.OK) {
+            cartasService.remove(obj);
+            updateTableView();
+        } 
     }
 }

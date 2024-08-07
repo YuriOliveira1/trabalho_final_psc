@@ -30,4 +30,8 @@ public class CartasService {
     public CartaDeApoio findById(int id){
         return daoCartaDeApoio.findById(id);
     }
+
+    public void remove(CartaDeApoio cartaDeApoio){
+        daoCartaDeApoio.deleteById(cartaDeApoio.getIdCarta());
+    }
 }
