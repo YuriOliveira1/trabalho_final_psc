@@ -25,7 +25,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
 
         try {
             st = conn.prepareStatement(
-                    "INSERT INTO dinheiro (valor, nomeConta, idDoacao, data) VALUES (?, ?, ?, ?)",
+                    "INSERT INTO dinheiro (valor, nomeConta, doador_id, data) VALUES (?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setFloat(1, obj.getValor());
@@ -57,7 +57,7 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
         PreparedStatement st = null;
 
         try {
-            st = conn.prepareStatement("UPDATE dinheiro SET valor = ?, nomeConta = ?, idDoacao = ?, data = ? WHERE id = ?");
+            st = conn.prepareStatement("UPDATE dinheiro SET valor = ?, nomeConta = ?, doador_id = ?, data = ? WHERE id = ?");
 
             st.setFloat(1, obj.getValor());
             st.setString(2, obj.getNomeConta());
@@ -138,14 +138,6 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
             DB.closeStatement(st);
         }
         return null;
-    }
-
-    private Doacao instantiateDoacao(ResultSet rs, Doador doador) throws SQLException {
-        Doacao doacao = new Doacao();
-
-        doacao.setId(rs.getInt("id"));
-
-        return doacao;
     }
 
     private Doador instantiateDoador(ResultSet rs) throws SQLException {

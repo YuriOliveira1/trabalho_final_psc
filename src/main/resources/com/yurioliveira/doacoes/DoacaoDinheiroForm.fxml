@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="631.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.DoacaoDnheiroFormController">
+<AnchorPane prefHeight="631.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.DoacaoDinheiroFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Registro de Doações em Dinheiro ">
          <font>
@@ -81,8 +81,8 @@
       </GridPane>
       <HBox layoutX="37.0" layoutY="515.0" prefHeight="30.0" prefWidth="266.0" spacing="15.0">
          <children>
-            <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#onBtSalvarAction" text="Salvar" />
-            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" text="Cancelar" />
+            <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#onBtSalvarActionD" text="Salvar" />
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarActionD" text="Cancelar" />
          </children>
       </HBox>
    </children>

@@ -3,9 +3,9 @@ package com.yurioliveira.doacoes.gui;
 import com.yurioliveira.doacoes.database.DbException;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
-import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
 import com.yurioliveira.doacoes.model.entities.Doador;
+import com.yurioliveira.doacoes.model.services.DoacaoDinheiroService;
 import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +16,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DoacaoDinheiroFormController implements Initializable {
@@ -47,25 +50,27 @@ public class DoacaoDinheiroFormController implements Initializable {
     @FXML
     private Button btCancelar;
 
-    private entityDoador;
+    private Doador entityDoador;
 
     private DoadorService doadorService;
 
     private DoacaoDinheiro entityDoacaoDinheiro;
 
+    private DoacaoDinheiroService doacaoDinheiroService;
+
     @FXML
-    public void onBtSalvarAction(ActionEvent event){
+    public void onBtSalvarActionD(ActionEvent event) {
         DoacaoDinheiro doacaoD = createAndSaveDoacao();
         try {
-            service.saveOrUpdate(doacaoD);
+            doacaoDinheiroService.saveOrUpdate(doacaoD);
             Utils.currentStage(event).close();
-        } catch (DbException | IllegalAccessException e) {
+        } catch (DbException e) {
             Alerts.showAlert("Erro ao Salvar Doação", null, e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    public void onBtCancelarAction(ActionEvent event){
+    public void onBtCancelarActionD(ActionEvent event) {
         Utils.currentStage(event).close();
     }
 
@@ -76,21 +81,48 @@ public class DoacaoDinheiroFormController implements Initializable {
     }
 
     private DoacaoDinheiro createAndSaveDoacao() {
-        DoacaoDinheiro doacao = new DoacaoDinheiro();
-        entityDoador = getFormDoador();
-        doadorService.saveOrUpdate(entityDoador);
-        entityDoacaoDinheiro = getFormDoacaoDinheiro();
-        entityDoacaoDinheiro.set
+        try {
+            entityDoacaoDinheiro = new DoacaoDinheiro();
+            entityDoador = getFormDoador();
+            doadorService.saveOrUpdate(entityDoador);
+            entityDoacaoDinheiro = getFormDoacaoDinheiro();
+            entityDoacaoDinheiro.setDoador(entityDoador);
+        } catch (DbException e) {
+            Alerts.showAlert("Erro na Criação e Salvamento da Doação", null, e.getMessage(), Alert.AlertType.ERROR);
 
-
+        }
+        return entityDoacaoDinheiro;
     }
+
+    private DoacaoDinheiro getFormDoacaoDinheiro() {
+        try {
+            entityDoacaoDinheiro.setId(Utils.tryParseToInt(txtIdDoacaoDinheiro.getText()));
+            entityDoacaoDinheiro.setValor(Utils.tryParseToFloat(txtValorDoacao.getText()));
+            entityDoacaoDinheiro.setNomeConta(txtNomeConta.getText());
+            entityDoacaoDinheiro.setDoador(entityDoador);
+            Instant instant = Instant.from(txtDataDoacao.getValue().atStartOfDay(ZoneId.systemDefault()));
+            entityDoacaoDinheiro.setData(Date.from(instant));
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Erro de Formato", "Dados Inválidos", "Verifique se os campos de ID e quantidade estão preenchidos corretamente.", Alert.AlertType.ERROR);
+        }
+        return entityDoacaoDinheiro;
+    }
+
 
     public void setDoador(Doador entityDoador) {
         this.entityDoador = entityDoador;
     }
 
     public void setDoadorService(DoadorService serviceDoador) {
-        this.doadorService = serviceDoador;
+        this.doadorService = new DoadorService();
+    }
+
+    public void setDoadorDinheiroService(DoacaoDinheiroService serviceDoacaoDinheiro) {
+        this.doacaoDinheiroService = serviceDoacaoDinheiro;
+    }
+
+    public void setDoacaoDinheiro(DoacaoDinheiro doacaoDinheiro) {
+        this.entityDoacaoDinheiro = doacaoDinheiro;
     }
 
     private Doador getFormDoador() {
@@ -114,4 +146,11 @@ public class DoacaoDinheiroFormController implements Initializable {
         txtContatoDoador.setText(entityDoador.getContato());
     }
 
+    public void subscribeDataChangeListener(ListaDoacaoDinheiroController listaDoacaoDinheiroController) {
+    }
+
+    public void updateDoacaoDinheiroForm() {
+
+    }
 }
+

@@ -18,7 +18,7 @@ public class DoacaoDinheiroService {
         return dao.findById(id);
     }
 
-    public void SaveOrUpdate(DoacaoDinheiro dinheiro) {
+    public void saveOrUpdate(DoacaoDinheiro dinheiro) {
         if (dinheiro.getId() == null) {
             dao.insert(dinheiro);
         } else {
