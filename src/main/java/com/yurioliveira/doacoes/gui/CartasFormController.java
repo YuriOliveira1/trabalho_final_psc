@@ -73,9 +73,6 @@ public class CartasFormController implements Initializable {
         return carta;
     }
 
-    public void listeners(DataChangeListener dataChangeListener) {
-        listeners.add(dataChangeListener);
-    }
 
     private void notifyDataChangeListeners() throws IllegalAccessException {
         for (DataChangeListener listener : listeners) {
@@ -99,6 +96,12 @@ public class CartasFormController implements Initializable {
     }
 
     public void updateCartasForm() {
+        if (cartaDeApoio != null) {
+            throw new IllegalStateException("Cartas de Apoio não foi inicializado");
+        }
+        textFieldId.setText(String.valueOf(cartaDeApoio.getIdCarta()));
+        textFieldNomeEscritor.setText(cartaDeApoio.getNomeEscritor());
+        textFieldTexto.setText(cartaDeApoio.getTextoDaCarta());
     }
 
 
