@@ -1,5 +1,6 @@
 package com.yurioliveira.doacoes.gui.util;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Constraints {
@@ -23,6 +24,14 @@ public class Constraints {
     public static void setTextFieldDouble(TextField txt) {
         txt.textProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null && !newValue.matches("\\d*([\\.]\\d*)?")) {
+                txt.setText(oldValue);
+            }
+        });
+    }
+
+    public static void setTextAreaMaxLength(TextArea txt, int max) {
+        txt.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() > max) {
                 txt.setText(oldValue);
             }
         });
