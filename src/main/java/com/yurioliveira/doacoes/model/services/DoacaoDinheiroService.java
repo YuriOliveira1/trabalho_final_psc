@@ -10,7 +10,7 @@ public class DoacaoDinheiroService {
 
     private DAO<DoacaoDinheiro> dao = DaoFactory.createDinheiroDao();
 
-    public List<DoacaoDinheiro> listAll() {
+    public List<DoacaoDinheiro> findAll() {
         return dao.findAll();
     }
 
@@ -29,5 +29,5 @@ public class DoacaoDinheiroService {
     public void delete(DoacaoDinheiro dinheiro) {
         dao.deleteById(dinheiro.getId());
     }
-    
+
 }

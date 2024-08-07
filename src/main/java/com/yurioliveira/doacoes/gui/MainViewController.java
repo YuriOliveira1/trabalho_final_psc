@@ -3,6 +3,7 @@ package com.yurioliveira.doacoes.gui;
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.model.services.CartasService;
+import com.yurioliveira.doacoes.model.services.DoacaoDinheiroService;
 import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
 import com.yurioliveira.doacoes.model.services.DoadorService;
 import javafx.fxml.FXML;
@@ -53,7 +54,16 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoacaoDinheiroAction() {
-        System.out.println("onMenuItemDoacaoDinheiroAction");
+        loadView("/com/yurioliveira/doacoes/ListaDoacaoDinheiro.fxml", (ListaDoacaoDinheiroController controller) -> {
+            DoacaoDinheiroService doacaoDinheiroService = new DoacaoDinheiroService();
+            controller.setDoacaoDinheiroService(doacaoDinheiroService);
+
+            try {
+                controller.updateTableView();
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
