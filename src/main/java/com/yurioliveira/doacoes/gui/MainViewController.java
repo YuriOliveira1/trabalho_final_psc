@@ -36,6 +36,9 @@ public class MainViewController implements Initializable {
     private MenuItem menuItemSobre;
 
     @FXML
+    private MenuItem menuItemBuscar;
+
+    @FXML
     public void onMenuItemDoacaoNormalAction() {
         loadView("/com/yurioliveira/doacoes/ListaDoacaoNormal.fxml", (DoacaoNListaController controller) -> {
             DoacaoNormalService doacaoNormalService = new DoacaoNormalService();
@@ -74,6 +77,18 @@ public class MainViewController implements Initializable {
         loadView("/com/yurioliveira/doacoes/ListaCartas.fxml", (CartasListaController controller) -> {
             CartasService cartasService = new CartasService();
             controller.setCartaService(cartasService);
+
+            controller.updateTableView();
+        });
+    }
+
+    @FXML
+    public void onMenuItemDoadorAction() {
+        System.out.println("FODASE");
+        loadView("/com/yurioliveira/doacoes/DoadorList.fxml", (DoadorListController controller) -> {
+            System.out.println("FODASE");
+            DoadorService doadorService = new DoadorService();
+            controller.setDoadorService(doadorService);
 
             controller.updateTableView();
         });

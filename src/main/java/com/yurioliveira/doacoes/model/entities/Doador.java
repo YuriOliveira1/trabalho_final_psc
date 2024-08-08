@@ -63,7 +63,11 @@ public class Doador {
 
     @Override
     public String toString() {
-        return "Doador [apelido=" + apelido + ", contato=" + contato + "]";
+        return "Doador{" +
+                "id=" + id +
+                ", apelido='" + apelido + '\'' +
+                ", contato='" + contato + '\'' +
+                '}';
     }
 
     public Integer getId() {

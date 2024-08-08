@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.DoadorListController">
+    <children>
+        <Label fx:id="labelRegistro" text="Tabela de Doadores:">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <padding>
+                <Insets bottom="8.0" left="20.0" top="20.0" />
+            </padding>
+        </Label>
+        <TableView fx:id="tableView" prefHeight="542.0" prefWidth="698.0">
+            <columns>
+                <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="tableColumnApelido" prefWidth="134.0" text="Apelido" />
+                <TableColumn fx:id="tableColumnContato" prefWidth="178.0" text="Contato" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="77.0" />
+            <TableColumn fx:id="tableColumnDELETE" prefWidth="164.0" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>
