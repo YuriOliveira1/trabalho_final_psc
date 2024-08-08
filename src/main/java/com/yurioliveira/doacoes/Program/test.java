@@ -20,12 +20,15 @@ public class test {
 
         Doador d = new Doador(7, "Lonfinho", "9999-9999");
         DoacaoDinheiro doacaoDinheiro = new DoacaoDinheiro(null, 1000, new Date(),"TESTE DINHEIRO", d);
-        Doacao doacao = new Doacao(null, "BomBom", 2, d, new Date());
 
-        System.out.println("FOI");
-        dao.insert(doacaoDinheiro);
+
+        int id = doacaoDinheiro.getDoador().getId();
+        System.out.println(id);
+        // doacaoService.saveOrUpdate(doacaoDinheiro);
+        // Doador doador2 = doadorDAO.findById(50);
+
+        // System.out.println(doador2);
         System.out.println("FOI TB");
-
 
 
 

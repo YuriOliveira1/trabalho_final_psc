@@ -45,6 +45,10 @@ public class DoacaoDinheiro {
         this.nomeConta = nomeConta;
     }
 
+    public Integer getDoadorId(){
+        return (doador != null) ? doador.getId() : null;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

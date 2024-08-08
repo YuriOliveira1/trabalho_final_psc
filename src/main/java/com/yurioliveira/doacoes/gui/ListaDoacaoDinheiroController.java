@@ -4,7 +4,6 @@ import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
-import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
 import com.yurioliveira.doacoes.model.entities.Doador;
 import com.yurioliveira.doacoes.model.services.DoacaoDinheiroService;
@@ -74,7 +73,8 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
     public void onBtRegistrarAction(ActionEvent event) {
         Stage parent = Utils.currentStage(event);
         DoacaoDinheiro doacaoDinheiro = new DoacaoDinheiro();
-        createDoacaoDinheiroForm(doacaoDinheiro, parent);
+        Doador doador = new Doador();
+        createDoacaoDinheiroForm(doacaoDinheiro, doador, parent);
     }
 
     @Override
@@ -82,16 +82,14 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
         initilizeNodes();
     }
 
-    private void createDoacaoDinheiroForm(DoacaoDinheiro doacaoDinheiro, Stage parent) {
+    private void createDoacaoDinheiroForm(DoacaoDinheiro doacaoDinheiro, Doador doador, Stage parent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoDinheiroForm.fxml"));
             Pane pane = loader.load();
-            Doador doador = new Doador();
 
             DoacaoDinheiroFormController controller = loader.getController();
 
-            controller.setDoadorDinheiroService(doacaoDinheiroService);
-            controller.setDoadorService(doadorService);
+            controller.setDoadorDinheiroService(doadorService);
 
             controller.setDoador(doador);
             controller.updateDoadorForm();
@@ -100,7 +98,6 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
 
             controller.subscribeDataChangeListener(this);
             controller.updateDoacaoDinheiroForm();
-
 
             Stage dialogStage = new Stage();
 
@@ -111,6 +108,42 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.showAndWait();
             System.out.println(doador.getId());
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    private void updateDoacaoDinheiroForm(DoacaoDinheiro doacaoDinheiro ,Stage parent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoDinheiroForm.fxml"));
+            Pane pane = loader.load();
+
+            DoacaoDinheiroFormController controller = loader.getController();
+
+            controller.setDoadorDinheiroService(doadorService);
+
+            controller.setDoacaoDinheiro(doacaoDinheiro);
+            controller.setDoador(doadorService.findById(50));
+            if (doacaoDinheiro.getDoador() == null) {
+                System.out.println("O doador em doacaoDinheiro é null.");
+            } else {
+                System.out.println("ID do doador: " + doacaoDinheiro.getDoador().getId());
+            }
+            controller.updateDoacaoDinheiroForm();
+            controller.updateDoadorForm();
+
+            controller.subscribeDataChangeListener(this);
+            controller.updateDoacaoDinheiroForm();
+
+            Stage dialogStage = new Stage();
+
+            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parent);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
@@ -171,44 +204,6 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
                         event -> updateDoacaoDinheiroForm(dd, Utils.currentStage(event)));
             }
         });
-    }
-
-    private void updateDoacaoDinheiroForm(DoacaoDinheiro doacaoDinheiro, Stage stage) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/yurioliveira/doacoes/DoacaoDinheiroForm.fxml"));
-            Pane pane = loader.load();
-
-            DoacaoDinheiroFormController controller = loader.getController();
-            controller.setDoadorDinheiroService(doacaoDinheiroService);
-            controller.setDoadorService(doadorService);
-
-            if (doacaoDinheiro == null) {
-                doacaoDinheiro = new DoacaoDinheiro();
-                Doador doador = new Doador();
-                doacaoDinheiro.setDoador(doador);
-                controller.setDoacaoDinheiro(doacaoDinheiro);
-                controller.setDoador(doador);
-            } else {
-                Doador doador = doadorService.findById(doacaoDinheiro.getDoador().getId());
-                doacaoDinheiro.setDoador(doador);
-                controller.setDoacaoDinheiro(doacaoDinheiro);
-                controller.setDoador(doador);
-            }
-
-            controller.updateDoacaoDinheiroForm();
-            controller.updateDoadorForm();
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Teste De Loading");
-            dialogStage.setScene(new Scene(pane));
-            dialogStage.setResizable(false);
-            dialogStage.initOwner(stage);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.showAndWait();
-        } catch (IOException e) {
-            Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
-            e.printStackTrace();
-        }
     }
 
     private void initRemoveButtons() {

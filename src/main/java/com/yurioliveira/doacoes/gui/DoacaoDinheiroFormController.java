@@ -83,7 +83,7 @@ public class DoacaoDinheiroFormController implements Initializable {
 
     private DoacaoDinheiro entityDoacaoDinheiro;
 
-    private DoacaoDinheiroService doacaoDinheiroService;
+    private DoacaoDinheiroService doacaoDinheiroService = new DoacaoDinheiroService();
 
     private List<DataChangeListener> dataChangeListenerList = new ArrayList<>();
 
@@ -134,21 +134,20 @@ public class DoacaoDinheiroFormController implements Initializable {
         return doacaoDinheiro;
     }
 
-
     public void setDoador(Doador entityDoador) {
         this.entityDoador = entityDoador;
     }
 
-    public void setDoadorService(DoadorService serviceDoador) {
-        this.doadorService = new DoadorService();
-    }
-
-    public void setDoadorDinheiroService(DoacaoDinheiroService serviceDoacaoDinheiro) {
-        this.doacaoDinheiroService = serviceDoacaoDinheiro;
+    public void setDoadorDinheiroService(DoadorService doadorService) {
+        this.doadorService = doadorService;
     }
 
     public void setDoacaoDinheiro(DoacaoDinheiro doacaoDinheiro) {
         this.entityDoacaoDinheiro = doacaoDinheiro;
+    }
+
+    public void setDoacaoDinheiroService(DoacaoDinheiroService serviceDoacaoDinheiro) {
+        this.doacaoDinheiroService = serviceDoacaoDinheiro;
     }
 
     private Doador getFormDoador() {

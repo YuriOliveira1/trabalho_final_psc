@@ -53,23 +53,22 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
     // Update está com erro com associação ao idDoacao -> Vou retirar posteriormente
     @Override
     public void update(DoacaoDinheiro obj) {
-        PreparedStatement st = null;
+        String sql = "UPDATE dinheiro SET valor = ?, nomeConta = ?, doador_id = ?, data = ? WHERE id = ?";
 
-        try {
-            st = conn.prepareStatement("UPDATE dinheiro SET valor = ?, nomeConta = ?, doador_id = ?, data = ? WHERE id = ?");
+        try (PreparedStatement st = conn.prepareStatement(sql)) {
+            if (obj.getDoador() == null) {
+                throw new IllegalArgumentException("Doador não pode ser nulo.");
+            }
 
             st.setFloat(1, obj.getValor());
             st.setString(2, obj.getNomeConta());
             st.setInt(3, obj.getDoador().getId());
             st.setDate(4, new java.sql.Date(obj.getData().getTime()));
             st.setInt(5, obj.getId());
-            
 
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DB.closeStatement(st);
         }
     }
 
