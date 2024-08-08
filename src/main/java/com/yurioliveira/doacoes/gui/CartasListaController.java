@@ -5,7 +5,6 @@ import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
-import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.services.CartasService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -111,6 +110,8 @@ public class CartasListaController implements Initializable, DataChangeListener 
             CartasFormController controller = loader.getController();
 
             controller.setCartasService(cartasService);
+
+            controller.setCartaDeApoio(cartaDeApoio);
 
             controller.subscribeDataChangeListener(this);
             controller.updateCartasForm();

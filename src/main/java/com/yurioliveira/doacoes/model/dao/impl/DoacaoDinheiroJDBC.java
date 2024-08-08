@@ -3,7 +3,6 @@ package com.yurioliveira.doacoes.model.dao.impl;
 
 import com.yurioliveira.doacoes.database.*;
 import com.yurioliveira.doacoes.model.dao.DAO;
-import com.yurioliveira.doacoes.model.entities.Doacao;
 import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
 import com.yurioliveira.doacoes.model.entities.Doador;
 

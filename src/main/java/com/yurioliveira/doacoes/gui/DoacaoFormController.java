@@ -21,10 +21,7 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DoacaoFormController implements Initializable{
 
@@ -180,14 +177,12 @@ public class DoacaoFormController implements Initializable{
         txtIdDoacao.setText(String.valueOf(entityDoacao.getId()));
         txtTipoDoacao.setText(entityDoacao.getTipo());
         txtQuantidadeDoacao.setText(String.valueOf(entityDoacao.getQuantidade()));
-
+        Locale.setDefault(Locale.US);
         if (entityDoacao.getData() != null) {
-            LocalDate localDate = entityDoacao.getData().toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
+            java.sql.Date sqlDate = (java.sql.Date) entityDoacao.getData();
+            LocalDate localDate = sqlDate.toLocalDate();
             txtDataDoacao.setValue(localDate);
-        } else {
-            txtDataDoacao.setValue(null);
         }
     }
+
 }

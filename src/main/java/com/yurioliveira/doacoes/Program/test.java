@@ -4,7 +4,9 @@ import com.yurioliveira.doacoes.model.dao.DAO;
 import com.yurioliveira.doacoes.model.dao.impl.*;
 import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.model.entities.Doacao;
+import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
 import com.yurioliveira.doacoes.model.entities.Doador;
+import com.yurioliveira.doacoes.model.services.DoacaoDinheiroService;
 
 import java.util.Date;
 import java.util.List;
@@ -12,12 +14,22 @@ import java.util.List;
 public class test {
     public static void main(String[] args) {
 
-        DAO<Doacao> dao = DaoFactory.createDoacaoDao();
+        DAO<DoacaoDinheiro> dao = DaoFactory.createDinheiroDao();
         DAO<Doador> doadorDAO = DaoFactory.createDoadorDao();
+        DoacaoDinheiroService doacaoService = new DoacaoDinheiroService();
 
         Doador d = new Doador(7, "Lonfinho", "9999-9999");
+        DoacaoDinheiro doacaoDinheiro = new DoacaoDinheiro(null, 1000, new Date(),"TESTE DINHEIRO", d);
         Doacao doacao = new Doacao(null, "BomBom", 2, d, new Date());
 
+        System.out.println("FOI");
+        dao.insert(doacaoDinheiro);
+        System.out.println("FOI TB");
+
+
+
+
+        /*
         System.out.println("TESTE 1 - INSERT");
         dao.insert(doacao);
 
@@ -36,7 +48,7 @@ public class test {
         doacao = dao.findById(3);
         dao.deleteById(3);
 
-       /* System.out.println("TESTE 5 - UPDATE");
+       System.out.println("TESTE 5 - UPDATE");
         d = doadorDAO.findById(4);
         cc.setNomeEscritor("Xablaummmm");
         ccDao.update(cc);

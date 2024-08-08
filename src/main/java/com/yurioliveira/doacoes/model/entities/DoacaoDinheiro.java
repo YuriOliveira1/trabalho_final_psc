@@ -21,6 +21,14 @@ public class DoacaoDinheiro {
     public DoacaoDinheiro() {
     }
 
+    public Doador getDoador() {
+        return doador;
+    }
+
+    public void setDoador(Doador doador) {
+        this.doador = doador;
+    }
+
     public Date getData() {
         return data;
     }
@@ -82,14 +90,6 @@ public class DoacaoDinheiro {
 
     public void setValor(float valor) {
         this.valor = valor;
-    }
-
-    public Doador getDoador() {
-        return doador;
-    }
-
-    public void setDoador(Doador doador) {
-        this.doador = doador;
     }
 
     @Override

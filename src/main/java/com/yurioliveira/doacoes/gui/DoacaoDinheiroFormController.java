@@ -19,9 +19,10 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DoacaoDinheiroFormController implements Initializable {
 
@@ -52,13 +53,6 @@ public class DoacaoDinheiroFormController implements Initializable {
     @FXML
     private Button btCancelar;
 
-    private Doador entityDoador;
-
-    private DoadorService doadorService;
-
-    private DoacaoDinheiro entityDoacaoDinheiro;
-
-    private DoacaoDinheiroService doacaoDinheiroService;
 
     @FXML
     public void onBtSalvarActionD(ActionEvent event) {
@@ -66,8 +60,15 @@ public class DoacaoDinheiroFormController implements Initializable {
         try {
             doacaoDinheiroService.saveOrUpdate(doacaoD);
             Utils.currentStage(event).close();
-        } catch (DbException e) {
+            notifyDataChangeListeners();
+        } catch (DbException | IllegalAccessException e) {
             Alerts.showAlert("Erro ao Salvar Doação", null, e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void notifyDataChangeListeners() throws IllegalAccessException {
+        for (DataChangeListener dataChangeListener : dataChangeListenerList) {
+            dataChangeListener.onDataChanged();
         }
     }
 
@@ -76,13 +77,27 @@ public class DoacaoDinheiroFormController implements Initializable {
         Utils.currentStage(event).close();
     }
 
+    private Doador entityDoador;
+
+    private DoadorService doadorService;
+
+    private DoacaoDinheiro entityDoacaoDinheiro;
+
+    private DoacaoDinheiroService doacaoDinheiroService;
+
+    private List<DataChangeListener> dataChangeListenerList = new ArrayList<>();
+
+    public void subscribeDataChangeListener(DataChangeListener dataChangeListener) {
+        dataChangeListenerList.add(dataChangeListener);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeNodes();
     }
 
-    private void initializeNodes(){
+    private void initializeNodes() {
         Constraints.setTextFieldFloat(txtValorDoacao);
         Constraints.setTextFieldMaxLength(txtApelidoDoador, 20);
         Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
@@ -104,17 +119,19 @@ public class DoacaoDinheiroFormController implements Initializable {
     }
 
     private DoacaoDinheiro getFormDoacaoDinheiro() {
+        Doador doador = getFormDoador();
+        DoacaoDinheiro doacaoDinheiro = new DoacaoDinheiro();
         try {
-            entityDoacaoDinheiro.setId(Utils.tryParseToInt(txtIdDoacaoDinheiro.getText()));
-            entityDoacaoDinheiro.setValor(Utils.tryParseToFloat(txtValorDoacao.getText()));
-            entityDoacaoDinheiro.setNomeConta(txtNomeConta.getText());
-            entityDoacaoDinheiro.setDoador(entityDoador);
+            doacaoDinheiro.setId(Utils.tryParseToInt(txtIdDoacaoDinheiro.getText()));
+            doacaoDinheiro.setValor(Utils.tryParseToFloat(txtValorDoacao.getText()));
+            doacaoDinheiro.setNomeConta(txtNomeConta.getText());
+            doacaoDinheiro.setDoador(doador);
             Instant instant = Instant.from(txtDataDoacao.getValue().atStartOfDay(ZoneId.systemDefault()));
-            entityDoacaoDinheiro.setData(Date.from(instant));
+            doacaoDinheiro.setData(Date.from(instant));
         } catch (NumberFormatException e) {
             Alerts.showAlert("Erro de Formato", "Dados Inválidos", "Verifique se os campos de ID e quantidade estão preenchidos corretamente.", Alert.AlertType.ERROR);
         }
-        return entityDoacaoDinheiro;
+        return doacaoDinheiro;
     }
 
 
@@ -155,12 +172,20 @@ public class DoacaoDinheiroFormController implements Initializable {
         txtContatoDoador.setText(entityDoador.getContato());
     }
 
-    public void subscribeDataChangeListener(ListaDoacaoDinheiroController listaDoacaoDinheiroController) {
-    }
 
     public void updateDoacaoDinheiroForm() {
-
+        if (entityDoacaoDinheiro == null) {
+            throw new IllegalStateException("O objeto Doacao não foi inicializado.");
+        }
+        txtIdDoacaoDinheiro.setText(String.valueOf(entityDoacaoDinheiro.getId()));
+        txtValorDoacao.setText(String.valueOf(entityDoacaoDinheiro.getValor()));
+        txtNomeConta.setText(entityDoacaoDinheiro.getNomeConta());
+        Locale.setDefault(Locale.US);
+        if (entityDoacaoDinheiro.getData() != null) {
+            java.sql.Date sqlDate = (java.sql.Date) entityDoacaoDinheiro.getData();
+            LocalDate localDate = sqlDate.toLocalDate();
+            txtDataDoacao.setValue(localDate);
+        }
     }
-
 }
 

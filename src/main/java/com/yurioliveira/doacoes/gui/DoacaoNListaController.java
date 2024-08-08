@@ -1,7 +1,6 @@
 package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
-import com.yurioliveira.doacoes.database.DbException;
 import com.yurioliveira.doacoes.gui.listeners.DataChangeListener;
 import com.yurioliveira.doacoes.gui.util.Alerts;
 import com.yurioliveira.doacoes.gui.util.Utils;
@@ -31,7 +30,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DoacaoNListaController implements Initializable, DataChangeListener {
-
 
     @FXML
     private TableView<Doacao> tableViewDoacoes;
@@ -123,7 +121,6 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
             DoacaoFormController controller = loader.getController();
             controller.setDoacaoService(doacaoNormalService);
             controller.setDoadorService(doadorService);
-
 
             controller.setDoador(doador);
             controller.updateDoadorForm();

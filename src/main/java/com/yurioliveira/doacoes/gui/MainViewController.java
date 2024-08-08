@@ -56,7 +56,10 @@ public class MainViewController implements Initializable {
     public void onMenuItemDoacaoDinheiroAction() {
         loadView("/com/yurioliveira/doacoes/ListaDoacaoDinheiro.fxml", (ListaDoacaoDinheiroController controller) -> {
             DoacaoDinheiroService doacaoDinheiroService = new DoacaoDinheiroService();
+            DoadorService doadorService = new DoadorService();
+
             controller.setDoacaoDinheiroService(doacaoDinheiroService);
+            controller.setDoadorService(doadorService);
 
             try {
                 controller.updateTableView();
