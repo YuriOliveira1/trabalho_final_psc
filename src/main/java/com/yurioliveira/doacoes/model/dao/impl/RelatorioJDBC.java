@@ -24,7 +24,7 @@ public class RelatorioJDBC {
             st = conn.prepareStatement("SELECT SUM(quantidade) AS valorDoacao FROM doacao");
             rs = st.executeQuery();
             if (rs.next()) {
-                return Integer.valueOf(rs.getString(1));
+                return rs.getInt("valorDoacao");
             } else {
                 return 0;
             }
@@ -81,7 +81,7 @@ public class RelatorioJDBC {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("SELECT SUM(valor) AS valorDoacao FROM dinheiro");
+            st = conn.prepareStatement("SELECT COALESCE(SUM(valor), 0) AS valorDoacao FROM dinheiro");
             rs = st.executeQuery();
             if (rs.next()) {
                 return Float.valueOf(rs.getString(1));
