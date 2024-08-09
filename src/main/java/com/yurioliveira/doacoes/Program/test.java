@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class test {
     public static void main(String[] args) throws SQLException {
         RelatorioJDBC relatorioJDBC = DaoFactory.createRelatorioDao();
+        DoacaoDinheiroJDBC doacaoDinheiroJDBC = (DoacaoDinheiroJDBC) DaoFactory.createDinheiroDao();
 
         Integer qtdDoacaoNormal = relatorioJDBC.countQtdDoacoesNormais();
         Integer qtdDoacaoEmDinheiro = relatorioJDBC.countQtdDoacoesEmDinheiro();

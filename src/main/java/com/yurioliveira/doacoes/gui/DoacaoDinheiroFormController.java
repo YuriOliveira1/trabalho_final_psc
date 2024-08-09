@@ -102,20 +102,22 @@ public class DoacaoDinheiroFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtApelidoDoador, 20);
         Constraints.setTextFieldMaxLength(txtContatoDoador, 15);
         Constraints.setTextFieldMaxLength(txtNomeConta, 15);
+        txtIdDoador.setText("");
     }
 
     private DoacaoDinheiro createAndSaveDoacao() {
         try {
-            entityDoacaoDinheiro = new DoacaoDinheiro();
-            entityDoador = getFormDoador();
-            doadorService.saveOrUpdate(entityDoador);
             entityDoacaoDinheiro = getFormDoacaoDinheiro();
-            entityDoacaoDinheiro.setDoador(entityDoador);
+            entityDoador = entityDoacaoDinheiro.getDoador();
+            if (entityDoador != null) {
+                doadorService.saveOrUpdate(entityDoador);
+            }
+            doacaoDinheiroService.saveOrUpdate(entityDoacaoDinheiro);
+            return entityDoacaoDinheiro;
         } catch (DbException e) {
             Alerts.showAlert("Erro na Criação e Salvamento da Doação", null, e.getMessage(), Alert.AlertType.ERROR);
-
+            return null;
         }
-        return entityDoacaoDinheiro;
     }
 
     private DoacaoDinheiro getFormDoacaoDinheiro() {
@@ -136,6 +138,7 @@ public class DoacaoDinheiroFormController implements Initializable {
 
     public void setDoador(Doador entityDoador) {
         this.entityDoador = entityDoador;
+        System.out.println("entityDoador inicializado com ID: " + (entityDoador != null ? entityDoador.getId() : "null"));
     }
 
     public void setDoadorDinheiroService(DoadorService doadorService) {
@@ -146,32 +149,39 @@ public class DoacaoDinheiroFormController implements Initializable {
         this.entityDoacaoDinheiro = doacaoDinheiro;
     }
 
-    public void setDoacaoDinheiroService(DoacaoDinheiroService serviceDoacaoDinheiro) {
-        this.doacaoDinheiroService = serviceDoacaoDinheiro;
-    }
 
     private Doador getFormDoador() {
         Doador doador = new Doador();
+        String idText = txtIdDoador.getText();
+        System.out.println("Valor do campo txtIdDoador: " + idText);
         try {
-            doador.setId(Utils.tryParseToInt(txtIdDoador.getText()));
+            Integer id = Utils.tryParseToInt(idText);
+            if (id != null) {
+                doador.setId(id);
+                System.out.println("ID do doador definido como: " + id);
+            } else {
+                System.out.println("DOACAODINHEIROFORM CONTROLLER ID do doador não foi definido. Valor do campo: " + idText);
+            }
             doador.setApelido(txtApelidoDoador.getText());
             doador.setContato(txtContatoDoador.getText());
         } catch (NumberFormatException e) {
             Alerts.showAlert("Erro de Formato", "ID inválido", "O ID do doador deve ser um número inteiro.", Alert.AlertType.ERROR);
+            System.out.println("Erro ao converter ID para inteiro: " + e.getMessage());
         }
         return doador;
     }
 
     public void updateDoadorForm() {
         if (entityDoador == null) {
+            System.out.println("entityDoador não foi inicializado");
             throw new IllegalStateException("Doador não foi inicializado");
         }
         txtIdDoador.setText(String.valueOf(entityDoador.getId()));
         txtApelidoDoador.setText(entityDoador.getApelido());
         txtContatoDoador.setText(entityDoador.getContato());
+
+        System.out.println("ID do doador atualizado para: " + entityDoador.getId());
     }
-
-
     public void updateDoacaoDinheiroForm() {
         if (entityDoacaoDinheiro == null) {
             throw new IllegalStateException("O objeto Doacao não foi inicializado.");

@@ -138,6 +138,28 @@ public class DoacaoDinheiroJDBC implements DAO<DoacaoDinheiro> {
         return null;
     }
 
+    public Integer getIdDoadorFromDoacaoDinheiro(Integer id) throws SQLException {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT doador_id FROM dinheiro WHERE id = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
+
     private Doador instantiateDoador(ResultSet rs) throws SQLException {
         Doador doador = new Doador();
         doador.setId(rs.getInt("id"));

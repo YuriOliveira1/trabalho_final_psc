@@ -134,7 +134,12 @@ public class DoacaoFormController implements Initializable{
     private Doador getFormDoador() {
         Doador doador = new Doador();
         try {
-            doador.setId(Utils.tryParseToInt(txtIdDoador.getText()));
+            Integer id = Utils.tryParseToInt(txtIdDoador.getText());
+            if (id != null) {
+                doador.setId(id);
+            } else {
+                System.out.println("ID do doador não foi definido.");
+            }
             doador.setApelido(txtApelidoDoador.getText());
             doador.setContato(txtContatoDoador.getText());
         } catch (NumberFormatException e) {

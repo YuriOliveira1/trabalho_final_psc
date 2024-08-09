@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -124,7 +125,8 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
             controller.setDoadorDinheiroService(doadorService);
 
             controller.setDoacaoDinheiro(doacaoDinheiro);
-            controller.setDoador(doadorService.findById(50));
+            Integer id = doacaoDinheiro.getId();
+            controller.setDoador(doadorService.findById(doacaoDinheiroService.getIdDoador(id)));
             if (doacaoDinheiro.getDoador() == null) {
                 System.out.println("O doador em doacaoDinheiro é null.");
             } else {
@@ -144,7 +146,7 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
             dialogStage.initOwner(parent);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.showAndWait();
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             Alerts.showAlert("IO Exception", "Erro de Carregamento de Tela", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
@@ -164,7 +166,6 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
         if (tableColumnData != null) {
             tableColumnData.setCellValueFactory(new PropertyValueFactory<>("data"));
         }
-
         Main.getPrincipalScene().getWindow();
     }
 
