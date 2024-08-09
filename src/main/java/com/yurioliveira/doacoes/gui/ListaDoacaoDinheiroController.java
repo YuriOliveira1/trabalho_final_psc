@@ -101,7 +101,7 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
 
             Stage dialogStage = new Stage();
 
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Cadastro de Doacao em Dinheiro");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parent);
@@ -138,7 +138,7 @@ public class ListaDoacaoDinheiroController implements Initializable, DataChangeL
 
             Stage dialogStage = new Stage();
 
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Atualização de Doação em Dinheiro");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parent);

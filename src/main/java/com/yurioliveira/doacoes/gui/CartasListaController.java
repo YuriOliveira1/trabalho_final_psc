@@ -118,7 +118,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
             Stage dialogStage = new Stage();
 
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Cadastro de Cartas de Apoio");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parentStage);
@@ -177,7 +177,7 @@ public class CartasListaController implements Initializable, DataChangeListener 
 
             Stage dialogStage = new Stage();
 
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Atualização de Cartas de Apoio");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(stage);

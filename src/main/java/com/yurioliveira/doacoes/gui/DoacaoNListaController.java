@@ -196,7 +196,7 @@ public class DoacaoNListaController implements Initializable, DataChangeListener
             controller.updateDoadorForm();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Atualização de Doacao");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(parentStage);

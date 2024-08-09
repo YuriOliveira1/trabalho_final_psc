@@ -23,7 +23,7 @@ public class Main extends Application {
             scrollPane.setFitToWidth(true);
 
             primaryStage.setScene(principalScene);
-            primaryStage.setTitle("Sample JavaFX application");
+            primaryStage.setTitle("Projeto PSC");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

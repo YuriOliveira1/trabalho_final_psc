@@ -142,7 +142,7 @@ public class DoadorListController implements Initializable, DataChangeListener {
 
             Stage dialogStage = new Stage();
 
-            dialogStage.setTitle("Cadastro de Doacao");
+            dialogStage.setTitle("Lista de Doador");
             dialogStage.setScene(new Scene(pane));
             dialogStage.setResizable(false);
             dialogStage.initOwner(stage);
