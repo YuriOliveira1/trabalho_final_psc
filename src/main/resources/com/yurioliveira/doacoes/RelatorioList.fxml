@@ -39,7 +39,7 @@
             <Label prefHeight="0.0" prefWidth="194.0" text="Quantidade de Doação em Dinheiro:" GridPane.rowIndex="1" />
             <Label text="Quantidade de Cartas Enviadas" GridPane.rowIndex="2" />
             <Label text="Total de Doações Feitas" GridPane.rowIndex="3" />
-            <Label text="Total de Dinheiro Doado:" GridPane.rowIndex="4" />
+            <Label prefHeight="17.0" prefWidth="201.0" text="Total de Dinheiro Doado              R$:" GridPane.rowIndex="4" />
             <TextField fx:id="txtQtdDoacaoNormal" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtQtdDoacaoEmDinheiro" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="393.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtQtdCartasEnviadas" alignment="CENTER" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />

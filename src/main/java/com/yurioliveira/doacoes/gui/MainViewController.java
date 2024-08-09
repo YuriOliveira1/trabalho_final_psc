@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -99,6 +100,11 @@ public class MainViewController implements Initializable {
         loadView("/com/yurioliveira/doacoes/RelatorioList.fxml", (RelatorioController controller) -> {
             RelatorioService relatorioService = new RelatorioService();
             controller.setRelatorioService(relatorioService);
+            try {
+                controller.updateTextField();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
