@@ -18,7 +18,7 @@
                 <MenuItem fx:id="menuItemBuscar" mnemonicParsing="false" onAction="#onMenuItemDoadorAction" text="Buscar Doador" />
             </Menu>
             <Menu mnemonicParsing="false" text="Geração de Relatório">
-                <MenuItem mnemonicParsing="false" text="Gerar Relatório" />
+                <MenuItem mnemonicParsing="false" onAction="#onMenuGerarRelatorioAction" text="Gerar Relatório" />
             </Menu>
             <Menu mnemonicParsing="false" text="Sobre">
                 <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />

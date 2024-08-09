@@ -1,13 +1,10 @@
 package com.yurioliveira.doacoes.model.dao.impl;
 
 import com.yurioliveira.doacoes.model.dao.DAO;
-import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
+import com.yurioliveira.doacoes.model.entities.*;
 
 
 import com.yurioliveira.doacoes.database.*;
-import com.yurioliveira.doacoes.model.entities.Doacao;
-import com.yurioliveira.doacoes.model.entities.DoacaoDinheiro;
-import com.yurioliveira.doacoes.model.entities.Doador;
 
 public class DaoFactory {
 
@@ -25,5 +22,9 @@ public class DaoFactory {
 
     public static DAO<CartaDeApoio> createCartaApoioDao(){
         return new CartaDeApoioJDBC(DB.getConnection());
+    }
+
+    public static RelatorioJDBC createRelatorioDao(){
+        return new RelatorioJDBC(DB.getConnection());
     }
 }

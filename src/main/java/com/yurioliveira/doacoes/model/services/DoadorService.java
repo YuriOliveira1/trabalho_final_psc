@@ -2,7 +2,6 @@ package com.yurioliveira.doacoes.model.services;
 
 import com.yurioliveira.doacoes.model.dao.DAO;
 import com.yurioliveira.doacoes.model.dao.impl.DaoFactory;
-import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.model.entities.Doador;
 
 import java.util.List;
@@ -17,10 +16,6 @@ public class DoadorService {
 
     public Doador findById(int id) {
         return doadorDAO.findById(id);
-    }
-
-    public void update(Doador doador) {
-        doadorDAO.update(doador);
     }
 
     public void saveOrUpdate(Doador doador) {

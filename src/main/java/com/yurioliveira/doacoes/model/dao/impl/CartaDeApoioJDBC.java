@@ -5,7 +5,6 @@ import com.yurioliveira.doacoes.model.entities.CartaDeApoio;
 import com.yurioliveira.doacoes.database.*;
 
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

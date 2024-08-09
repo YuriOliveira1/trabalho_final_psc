@@ -2,10 +2,7 @@ package com.yurioliveira.doacoes.gui;
 
 import com.yurioliveira.doacoes.Main;
 import com.yurioliveira.doacoes.gui.util.Alerts;
-import com.yurioliveira.doacoes.model.services.CartasService;
-import com.yurioliveira.doacoes.model.services.DoacaoDinheiroService;
-import com.yurioliveira.doacoes.model.services.DoacaoNormalService;
-import com.yurioliveira.doacoes.model.services.DoadorService;
+import com.yurioliveira.doacoes.model.services.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -84,9 +81,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDoadorAction() {
-        System.out.println("FODASE");
         loadView("/com/yurioliveira/doacoes/DoadorList.fxml", (DoadorListController controller) -> {
-            System.out.println("FODASE");
             DoadorService doadorService = new DoadorService();
             controller.setDoadorService(doadorService);
 
@@ -97,6 +92,14 @@ public class MainViewController implements Initializable {
     @FXML
     public void onMenuItemSobreAction() {
         loadView("/com/yurioliveira/doacoes/About.fxml", x -> {});
+    }
+
+    @FXML
+    public void onMenuGerarRelatorioAction() {
+        loadView("/com/yurioliveira/doacoes/RelatorioList.fxml", (RelatorioController controller) -> {
+            RelatorioService relatorioService = new RelatorioService();
+            controller.setRelatorioService(relatorioService);
+        });
     }
 
     @Override

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox cacheShape="false" centerShape="false" fillWidth="false" prefHeight="538.0" prefWidth="591.0" scaleShape="false" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yurioliveira.doacoes.gui.RelatorioController">
+    <children>
+        <Label fx:id="labelRegistro" prefHeight="0.0" prefWidth="171.0" text="Relatorio:">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <padding>
+                <Insets left="50.0" />
+            </padding>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+        </Label>
+      <GridPane cacheShape="false" centerShape="false" prefHeight="477.0" prefWidth="591.0" scaleShape="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="207.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="505.0" minWidth="10.0" prefWidth="90.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Quantidade de Doações Normais:" />
+            <Label prefHeight="0.0" prefWidth="194.0" text="Quantidade de Doação em Dinheiro:" GridPane.rowIndex="1" />
+            <Label text="Quantidade de Cartas Enviadas" GridPane.rowIndex="2" />
+            <Label text="Total de Doações Feitas" GridPane.rowIndex="3" />
+            <Label text="Total de Dinheiro Doado:" GridPane.rowIndex="4" />
+            <TextField fx:id="txtQtdDoacaoNormal" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtQtdDoacaoEmDinheiro" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="393.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtQtdCartasEnviadas" alignment="CENTER" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtQtdTotalDoacoesFeitas" alignment="CENTER" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtQtdTotalValorEmDinheiro" alignment="CENTER" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+         <padding>
+            <Insets left="50.0" right="270.0" />
+         </padding>
+      </GridPane>
+    </children>
+</VBox>

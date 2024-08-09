@@ -4,6 +4,7 @@ module com.yurioliveira.doacoes {
     requires java.desktop;
     requires java.sql;
     requires jdk.jshell;
+    requires mysql.connector.j;
 
     opens com.yurioliveira.doacoes to javafx.fxml;
     opens com.yurioliveira.doacoes.gui to javafx.fxml;
