@@ -1,9 +1,5 @@
 
-# Trabalho Prático: Programação de Soluções Computacionais
-
-
-
-## Tecnologias
+## Stacks
 
 - Java
 - MySql
@@ -15,70 +11,64 @@
 
 - [@YuriOliveira1](https://github.com/YuriOliveira1)
 
-# Estrutura do Trabalho
+# Work Structure
 
-## 1. Proposta: 
-
-Nossa proposta é voltado para doações de cabelo, maquiagem, lenços e dinheiro para uma organização que auxilia mulheres com câncer, principalmente de mama. Após a quimioterapia, muitas mulheres enfrentam a perda de cabelo, o que pode afetar significativamente sua autoestima. Nosso objetivo é fornecer apoio e recursos para ajudá-las a enfrentar essa fase com mais confiança e dignidade.
-
-A ideia foi sugerida pela mãe do integrante Yuri de Oliveira, que trabalhou em uma clínica chamada OncoMinas, localizada em Extrema-MG. OncoMinas é uma clínica oncológica que atende diversos pacientes com câncer. Uma das campanhas realizadas por essa clínica foi a "Campanha Laço Rosa", cujo principal objetivo era receber doações de cabelo, lenços e maquiagem para aumentar a autoestima das mulheres em tratamento
-
-## 2. Solicitando os Requisitos Funcionais
-
-Para solicitar os Requisitos Funcionais de nossa proposta, utilizamos o ChatGPT como ferramenta de auxílio. No meu primeiro prompt, detalhei a proposta do nosso projeto, explicando a ideia principal: desenvolver um software para gerenciar doações. Com base nisso, o ChatGPT gerou diversas funções que poderiam ser incorporadas ao nosso software. Após analisar as sugestões, identifiquei que algumas funcionalidades estavam faltando, como a capacidade de armazenar dados em arquivos TXT e gerar pequenos relatórios.
-
-Para adequar melhor o software ao que está sendo planejado e solicitado, solicitei um segundo prompt para corrigir e melhorar as requisições. Com essa nova solicitação, percebi que as sugestões estavam mais alinhadas com nossas necessidades. Decidi então fazer alguns ajustes finais, removendo funcionalidades que, em minha visão, não são necessárias no momento, como o cadastro de usuários e beneficiários, pois no projeto de referência que estamos utilizando, essas informações serão organizadas de uma forma diferente, que será explicada em um vídeo.
-
-### 2.1. Requisitos Funcionais com IA:
-
-(Requisições Do inicio do projeto)
-
-- **Cadastro de Doações:** O sistema deve ser capaz de registrar diferentes tipos de doações, tais como maquiagem, cabelo, lenços e dinheiro. Além disso, ele deve permitir que o usuário insira especificações detalhadas para cada doação, como tipo, quantidade, data da doação, cores, Nome/Apelido(Apenas para uma  breve Identificação).
-- **Armazenar as Doações:** As informações das doações devem ser armazenadas em um arquivo de texto (TXT), proporcionando um controle e organização mais eficazes das doações realizadas.
-- **Gerador de Relatorio:** O sistema deve incluir uma opção para gerar relatórios que exibam a quantidade de cada tipo de item doado, como maquiagem, cabelo, dinheiro e lenços. Esses relatórios devem ser acessíveis ao usuário para proporcionar uma visão clara e detalhada das contribuições feitas
-- **Tratamento de Exeções:** Para garantir o bom funcionamento do software, é crucial que os desenvolvedores realizem todos os tratamentos de exceções para garantir um bom software.
-
-### 2.2. Prompts Usados:
-
-- [Primeiro Prompt](https://docs.google.com/document/d/1Gl26gusF3mFw10VtmvV4dn3VEUjwsQNi4nP8vTXB3kU/edit?usp=sharing)
-- [Segundo Prompt](https://docs.google.com/document/d/1VLhJtMMzkSgRy0ryF72P3VVOF68CP-fIE2KJ9Tmxnmo/edit?usp=sharing)
-- [Terceiro Prompt](https://docs.google.com/document/d/1o729OxRmQf2MTi7RLdPO8rRgJph8U7Zfiz2lwwGpUBI/edit?usp=sharing)
-
-## 3. Falando de Críticas 
-
-Após revisar os resultados dos três prompts enviados ao ChatGPT, conclui que a capacidade do modelo em fornecer respostas além do solicitado pode ter efeitos positivos e negativos. Dependendo do contexto, isso pode enriquecer os resultados ou causar perda de tempo ao tentar corrigir excessos.
-
-Ao utilizar o ChatGPT para a criação de requisitos funcionais, observei que o modelo frequentemente sugere funcionalidades que não foram solicitadas. Isso pode enriquecer o projeto com novas ideias, mas também exige um esforço adicional para filtrar o que realmente é necessário. Muitas das funcionalidades geradas acabaram sendo removidas ou substituídas. Além disso, o ChatGPT utiliza exemplos de diversas fontes e os aplica à solicitação. Embora isso possa trazer ideias inovadoras, pode resultar em informações não pertinentes ou não desejadas. Durante o processo, algumas funcionalidades sugeridas pelo modelo, como o tratamento diferenciado para Doações de Dinheiro, o envio de Cartas e todo o sistema de armazenamento e tratamento de exceções, se mostraram úteis e foram incorporadas ao projeto.
-
-Na criação das classes e funções iniciais, parecia que tudo estava correto, mas durante o desenvolvimento do sistema, boa parte do que foi gerado precisou ser reconstruída do zero ou parcialmente. O ChatGPT foi importante para gerar uma boa base para a construção do projeto, ajudando-me também a ter mais ideias de funções ou de como contornar algo confuso que ele gerou, transformando-o em algo bom na minha visão.
-
-Além desses pequenos pontos negativos, observei uma geração de texto interessante por parte do ChatGPT. Ele forneceu uma função de cadastro de login e senha e, ao final, incluiu uma seção sobre segurança da informação dos indivíduos que participam do sistema de doações. Esse tópico é relevante, dado o cenário atual. É crucial entender como um projeto similar funcionaria na prática, onde o anonimato é levado muito a sério para evitar constrangimentos para os envolvidos e prevenir que as doações sejam utilizadas para promoções pessoais ou de organizações específicas.
-
-### 3.1. Novas Críticas
-
-Após ter feito o primeiro esboço e ter feito diversas atualizações o ChatGPT ainda me acompanhou nesse processo, principalmente em maneiras novas de implementar um codigo mais eficiente e tambem consultas em SQL, não tenho dominio total da linguagem então ficou um pouco dificil mas ele me deu alguns comandos e explicou suas funcionalidades,
-como não estou usando um FrameWork para injeção de dependencias tive bastante complicações na hora de injetar, e o ChatGPT me deu algumas dicas de como ser mais facil e até mesmo resolveu um problema que estava me pertubando por bastante tempo, aprendi que nome de variaveis e metodos são algo extremamente importante e uma hora voce acaba se perdendo.
-
-## 4. Aprendizados
-Desde do inicio do projeto fiz diversas atualizações, desde do começo quando era apenas arquivos txt e csv, nesse inicio aprendi bastante sobre manipulação de arquivos e tratamento de exceções, e a maior dificuldade nesse começo foi a parte de arquivos já que tinha bastante possibilidade e não fazia ideia de qual seria a melhor.
-
-Na outra "grande atualização" do projeto foi implementado o Banco de Dados MySql, aqui aprendi bastante desde de como funciona alguns modelos de projeto um que utilizei foi o DAO, que não tive nenhuma dificuldade para implementar, aprendi diversos comandos SQL para aplicações simples.
-
-Nessa ultima grande atualização foi implementado o JavaFx, que foi uma experiencia um pouco dolorida pelo fato que a configuração no incio foi um pouco confusa e não estava com IDE configurada, mas após os ajustes foi bastante tranquilo, aprendi mais modelos de projeto como MVC e Observer Design Pattern e acabei utilizando os dois nesse projeto, nas atualizações em "tempo real" de alguma informações das tabelas e tambem utilizei o MVC para organizar e estruturar as telas, resolvi utilizar esses designs de projeto já que estava estudando e queria aplicar em algo pessoal, aprendi bastante coisa.
-
-No Incio do projeto eu demorava basntante tempo para resolver ou pensar em algo novo programando, mas quando cheguei onde estou as coisas começaram a ser mais rapidas e problemas que achava complexo hoje está simples ou caso não esteja eu sei aonde procurar a resposta ou pensar em um algoritmo novo para resolver um novo problema.
-
-E o maior aprendizado é sempre manter a organizações e nomes coerentes, isso teria me poupado bastante tempo :)
+## 1. Proposal: 
 
 
-## 5. Estratégia de Programação com IA:
+**Campaign Concept**
 
-Na parte de utilização de uma estratégia específica, acabei optando por utilizar todas as que estavam ao meu alcance e atendiam às minhas necessidades. No início, utilizei o GPT para me ajudar a entender as diferenças entre FileWriter e PrintWriter e qual seria a melhor opção para a minha necessidade. Também fiz mais perguntas sobre a utilização do append e a combinação entre FileWriter e PrintWriter. Outra pergunta que fiz foi sobre o uso da classe Date para trabalhar com datas. Após isso, pedi mais explicações e exemplos sobre o uso de diferentes tipos de patterns que eu poderia implementar no meu programa.
+The concept centers around gathering donations of hair, makeup, scarves, and monetary contributions for an organization dedicated to supporting women with cancer, particularly breast cancer. Following chemotherapy, many women experience hair loss, which can significantly impact their self-esteem. Our goal is to offer support and resources to help them navigate this challenging phase with greater confidence and dignity.
 
-Acabei utilizando o GPT mais no início do desenvolvimento do meu programa, pois foi quando surgiram mais dúvidas em relação à leitura de arquivos, utilização de datas e algumas tomadas de decisões para determinar qual abordagem seria mais adequada e eficiente para cada situação. No momento atual do desenvolvimento, estou utilizando o GPT para a correção de métodos, verificando se haverá algum problema com o buffer do Scanner ou se há algo que poderia ser um erro óbvio. Após passar por essa verificação, realizo meus próprios testes.
+**Inspiration**
 
-Aprofundando um pouco nos conhecimentos e ideias, acabei estudando sobre Generics. Tive a ideia de armazenar certos objetos em uma lista e pensei em utilizá-la, mas não foi necessário. Também aprendi a utilizar o final para organizar os arquivos que precisava. Outra coisa que aprendi de forma bastante prática foram as Exceptions e como eu poderia criar as minhas próprias Exceptions.
+This idea was inspired by my mother, who worked at a clinic called OncoMinas, located in Extrema, Minas Gerais. OncoMinas is an oncology clinic that serves numerous cancer patients. One of the campaigns organized by this clinic was the "Pink Ribbon Campaign," which primarily focused on receiving donations of hair, scarves, and makeup to boost the self-esteem of women undergoing treatment.
 
-Utilizamos bastante o GPT para nos informar sobre a melhor escolha para resolver determinados problemas. Um desses problemas que gerou bastante dúvida foi na parte de tratamento de exceções, onde tínhamos vários tipos de exceções e precisávamos utilizar o Scanner logo após. O GPT nos deu uma opção bastante interessante, sugerindo o uso de métodos para tratar, ler e exibir o texto para o usuário em apenas uma linha. Isso não apenas facilitou o tratamento das exceções, mas também simplificou o código e reduziu o número de linhas necessárias.
+## 2. Functional Requirements
 
+To conceptualize the functional requirements for my project proposal, I focused on the primary entities within the software, specifically the donations aspect. To address this, I created a class named "Donations" which would serve as the foundation for all other donation types, including monetary donations and in-kind donations. I also envisioned incorporating a concise report feature to track the campaign's progress from start to finish, aggregating all donation data into a structured report format.
+
+Initially, I considered storing all information in TXT or CSV files, but ultimately opted for MySQL to house all necessary donation data, ensuring enhanced data organization.
+
+### 2.1. Doing...
+
+
+Initial Project Requirements
+
+- **Donation Registration:** The system must be capable of registering various types of donations, including makeup, hair, scarves, and monetary contributions. Additionally, it should allow users to input detailed specifications for each donation, such as type, quantity, donation date, colors, and a brief identifier (Name/Nickname).
+
+-  **Donation Storage:** Donation information should be stored in a text file (TXT), facilitating efficient management and organization of all contributions.
+
+- **Report Generation:** The system should incorporate a report generation feature, capable of displaying the quantity of each donated item type, such as makeup, hair, money, and scarves. These reports should be readily accessible to users, providing a clear and comprehensive overview of all donations received.
+
+- **Exception Handling:** To ensure software robustness, it's essential for developers to implement thorough exception handling mechanisms, guaranteeing a smooth and reliable user experience.
+
+
+### 3. New Reviews
+
+After creating the initial draft and making several updates, ChatGPT continued to assist me throughout the development process, particularly in suggesting more efficient coding approaches and SQL queries. As I'm not fully proficient in SQL, it was a bit challenging, but ChatGPT provided helpful commands and explanations.
+
+Additionally, since I wasn't using a framework for dependency injection, I encountered significant difficulties during the injection process. ChatGPT offered valuable tips on simplifying this and even helped me resolve a persistent issue. I learned that variable and method naming is crucial, as it's easy to lose track otherwise.
+
+## 4. Learnings
+Throughout the project's evolution, I've made numerous updates, starting from the initial stages when it relied solely on TXT and CSV files. During this phase, I gained valuable knowledge about file manipulation and exception handling. The most challenging aspect at the beginning was working with files, as there were many possibilities, and I was unsure which approach would be optimal.
+
+In the subsequent "major update," I integrated a MySQL database. This phase involved extensive learning, from understanding various project models (like the DAO pattern, which I implemented seamlessly) to mastering SQL commands for simple applications.
+
+The most recent significant update involved incorporating JavaFX. This experience was somewhat challenging initially due to a confusing setup process and an unconfigured IDE. However, once those adjustments were made, it became quite smooth. I explored additional project models like MVC and the Observer Design Pattern, ultimately utilizing both in this project. MVC helped organize and structure the UI, while the Observer pattern enabled "real-time" updates of table information. I decided to implement these design patterns because I was studying them and wanted to apply them to a personal project, which proved to be a valuable learning experience.
+
+At the project's outset, I spent considerable time solving problems or coming up with new programming ideas. However, as I progressed, things became faster, and problems that once seemed complex now appear simple. If I encounter a challenge, I know where to seek answers or how to devise a new algorithm to solve it.
+
+The most important lesson I've learned is to maintain organization and consistent naming conventions.
+
+
+## 5. AI Programming Strategy:
+
+Regarding the use of specific strategies, I ended up opting for all those within my reach that met my needs. Initially, I utilized GPT to help me understand the differences between FileWriter and PrintWriter and which would be the better choice for my requirements. I also asked further questions about using append and the combination of FileWriter and PrintWriter. Another inquiry I made was about the use of the Date class for working with dates. Subsequently, I requested more explanations and examples regarding various design patterns that I could implement in my program.
+
+I primarily utilized GPT during the early stages of my program's development when I had more questions about file reading, working with dates, and making decisions to determine the most appropriate and efficient approach for each situation. Currently, I'm using GPT to review my methods, checking for potential issues with the Scanner buffer or any obvious errors. After this review, I conduct my own tests.
+
+Delving deeper into knowledge and ideas, I ended up studying Generics. I had the idea of storing certain objects in a list and considered using it, but it turned out to be unnecessary. I also learned how to use the final keyword to organize the files I needed. Another concept I learned quite practically was Exceptions and how to create my own custom exceptions.
+
+We extensively used GPT to inform us about the best choices for solving specific problems. One such problem that generated considerable doubt was in the area of exception handling, where we had multiple exception types and needed to use the Scanner immediately afterward. GPT provided a very interesting option, suggesting the use of methods to handle, read, and display text to the user in a single line. This not only facilitated exception handling but also simplified the code and reduced the number of lines required.
 
